@@ -1,7 +1,0 @@
-package com.edu.thss.smartdental;
-
-import Fragment;
-
-public class ToothhomeCalendar extends Fragment {
-
-}

@@ -1,0 +1,888 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    
+    android:background="@color/fragment_background" >
+
+    <LinearLayout 
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:paddingBottom="60dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="10dp">
+
+   <LinearLayout
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:background="@color/app_white"
+        >
+
+       <TextView
+           android:id="@+id/message"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:background="@color/app_blue"
+           android:paddingLeft="24dp"
+           android:paddingRight="24dp"
+           android:paddingTop="10dp"
+           android:text="信息"
+           android:textColor="@color/app_white"
+           android:textSize="20sp" />
+
+       <TextView
+           android:id="@+id/caseHistory"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:paddingLeft="26dp"
+           android:paddingRight="26dp"
+           android:paddingTop="10dp"
+           android:text="病历"
+           android:textSize="20sp" />
+
+       <TextView
+           android:id="@+id/calendar"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:paddingLeft="24dp"
+           android:paddingRight="24dp"
+           android:paddingTop="10dp"
+           android:text="日程"
+           android:textSize="20sp" />
+   </LinearLayout>
+
+   <LinearLayout
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:background="@color/fragment_background"
+       android:gravity="center_vertical"
+       android:orientation="vertical"
+       android:layout_marginTop="20dp" >
+       
+   <RelativeLayout
+       android:layout_width="fill_parent"
+       android:layout_height="80dp"
+       android:background="@color/app_white" >
+
+       <ImageView
+           android:id="@+id/infoImageItem"
+           android:layout_width="80dp"
+           android:layout_height="80dp"
+           android:layout_alignParentLeft="true"
+           android:src="@drawable/ic_info_img" />
+
+       <TextView
+           android:id="@+id/infoName"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignParentTop="true"
+           android:layout_gravity="center"
+           android:layout_marginLeft="10dp"
+           android:layout_toRightOf="@+id/infoImageItem"
+           android:paddingLeft="20dp"
+           android:paddingRight="20dp"
+           android:paddingTop="10dp"
+           android:text="金XX"
+           android:textSize="20sp" />
+
+       <Button
+           android:id="@+id/infoupload"
+           android:layout_width="wrap_content"
+           android:layout_height="30dp"
+           android:layout_alignParentBottom="true"
+           android:layout_gravity="bottom"
+           android:layout_marginLeft="10dp"
+           android:layout_toRightOf="@+id/infoImageItem"
+           android:background="@color/app_blue"
+           android:paddingLeft="20dp"
+           android:paddingRight="20dp"
+           android:text="上传头像"
+           android:textColor="@color/app_white"
+           android:textSize="16sp" />
+   </RelativeLayout>
+
+   <LinearLayout
+       android:layout_width="fill_parent"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="20dp"
+       android:orientation="vertical" >
+
+       <TableLayout
+           android:id="@+id/infobasiclayout"
+           android:layout_width="fill_parent"
+           android:layout_height="wrap_content"
+           android:shrinkColumns="1"
+           android:stretchColumns="1" >
+
+           <TableRow
+               android:id="@+id/infobasicrow0"
+               android:layout_width="fill_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginBottom="1dp"
+               android:layout_marginLeft="2dp"
+               android:layout_marginRight="2dp"
+               android:background="@color/fragment_info_row_background"
+               android:paddingBottom="8dp"
+               android:paddingTop="8dp" >
+
+               <TextView
+                   android:id="@+id/infobasic_t"
+                   android:layout_width="wrap_content"
+                   android:layout_height="fill_parent"
+                   android:gravity="center_vertical"
+                   android:paddingLeft="10dp"
+                   android:text="基本信息"
+                   android:textColor="#000000"
+                   android:textSize="16sp" />
+
+               <ImageView
+                   android:id="@+id/infobasic_edit"
+                   android:layout_width="wrap_content"
+                   android:layout_height="fill_parent"
+                   android:layout_gravity="right"
+                   android:gravity="center_vertical"
+                   android:paddingRight="20.0dip"
+                   android:src="@drawable/ic_info_edit" />
+           </TableRow>
+
+           <TableRow
+               android:id="@+id/infogender"
+               android:layout_width="fill_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginBottom="1dp"
+               android:layout_marginLeft="2dp"
+               android:layout_marginRight="2dp"
+               android:background="@color/fragment_info_row_background"
+               android:paddingBottom="8dp"
+               android:paddingTop="8dp" >
+
+               <TextView
+                   android:id="@+id/infogender_t"
+                   android:layout_width="wrap_content"
+                   android:layout_height="fill_parent"
+                   android:gravity="center_vertical"
+                   android:paddingLeft="10dp"
+                   android:text="性别"
+                   android:textColor="#AAAAAA"
+                   android:textSize="16sp" />
+
+               <TextView
+                   android:id="@+id/infogender_c"
+                   android:layout_width="wrap_content"
+                   android:layout_height="fill_parent"
+                   android:gravity="center_vertical"
+                   android:paddingLeft="20dp"
+                   android:text="女"
+                   android:textColor="#AAAAAA"
+                   android:textSize="16sp" />
+           </TableRow>
+
+           <TableRow
+               android:id="@+id/infobirth"
+               android:layout_width="fill_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginBottom="1dp"
+               android:layout_marginLeft="2dp"
+               android:layout_marginRight="2dp"
+               android:background="@color/fragment_info_row_background"
+               android:paddingBottom="8dp"
+               android:paddingTop="8dp" >
+
+               <TextView
+                   android:id="@+id/infobirth_t"
+                   android:layout_width="wrap_content"
+                   android:layout_height="fill_parent"
+                   android:gravity="center_vertical"
+                   android:paddingLeft="10dp"
+                   android:text="出生日期"
+                   android:textColor="#AAAAAA"
+                   android:textSize="16sp" />
+
+               <TextView
+                   android:id="@+id/infobirth_c"
+                   android:layout_width="wrap_content"
+                   android:layout_height="fill_parent"
+                   android:gravity="center_vertical"
+                   android:paddingLeft="20dp"
+                   android:text="1952-01-28"
+                   android:textColor="#AAAAAA"
+                   android:textSize="16sp" />
+           </TableRow>
+
+           <TableRow
+               android:id="@+id/infoid"
+               android:layout_width="fill_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginBottom="1dp"
+               android:layout_marginLeft="2dp"
+               android:layout_marginRight="2dp"
+               android:background="@color/fragment_info_row_background"
+               android:paddingBottom="8dp"
+               android:paddingTop="8dp" >
+
+               <TextView
+                   android:id="@+id/infoid_t"
+                   android:layout_width="wrap_content"
+                   android:layout_height="fill_parent"
+                   android:gravity="center_vertical"
+                   android:paddingLeft="10dp"
+                   android:text="身份证号"
+                   android:textColor="#AAAAAA"
+                   android:textSize="16sp" />
+
+               <TextView
+                   android:id="@+id/infoid_c"
+                   android:layout_width="wrap_content"
+                   android:layout_height="fill_parent"
+                   android:gravity="center_vertical"
+                   android:paddingLeft="20dp"
+                   android:text="110108195201280024"
+                   android:textColor="#AAAAAA"
+                   android:textSize="16sp" />
+           </TableRow>
+
+           <TableRow
+               android:id="@+id/infomedicare"
+               android:layout_width="fill_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginBottom="1dp"
+               android:layout_marginLeft="2dp"
+               android:layout_marginRight="2dp"
+               android:background="@color/fragment_info_row_background"
+               android:paddingBottom="8dp"
+               android:paddingTop="8dp" >
+
+               <TextView
+                   android:id="@+id/infomedicare_t"
+                   android:layout_width="wrap_content"
+                   android:layout_height="fill_parent"
+                   android:gravity="center_vertical"
+                   android:paddingLeft="10dp"
+                   android:text="医保号"
+                   android:textColor="#AAAAAA"
+                   android:textSize="16sp" />
+
+               <TextView
+                   android:id="@+id/infomedicare_c"
+                   android:layout_width="wrap_content"
+                   android:layout_height="fill_parent"
+                   android:gravity="center_vertical"
+                   android:paddingLeft="20dp"
+                   android:text="本市医保"
+                   android:textColor="#AAAAAA"
+                   android:textSize="16sp" />
+           </TableRow>
+       </TableLayout>
+
+       <TableLayout
+           android:id="@+id/infoextendslayout"
+           android:layout_width="fill_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="10dp"
+           android:shrinkColumns="1"
+           android:stretchColumns="1" >
+
+           <TableRow
+               android:id="@+id/infoextendsrow0"
+               android:layout_width="fill_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginBottom="1dp"
+               android:layout_marginLeft="2dp"
+               android:layout_marginRight="2dp"
+               android:background="@color/fragment_info_row_background"
+               android:paddingBottom="8dp"
+               android:paddingTop="8dp" >
+
+               <TextView
+                   android:id="@+id/infoextends_t"
+                   android:layout_width="wrap_content"
+                   android:layout_height="fill_parent"
+                   android:gravity="center_vertical"
+                   android:paddingLeft="10dp"
+                   android:text="其它信息"
+                   android:textColor="#000000"
+                   android:textSize="16sp" />
+
+               <ImageView
+                   android:id="@+id/infoextends_edit"
+                   android:layout_width="wrap_content"
+                   android:layout_height="fill_parent"
+                   android:layout_gravity="right"
+                   android:gravity="center_vertical"
+                   android:paddingRight="20.0dip"
+                   android:src="@drawable/ic_info_edit" />
+           </TableRow>
+
+           <TableRow
+               android:id="@+id/infocountry"
+               android:layout_width="fill_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginBottom="1dp"
+               android:layout_marginLeft="2dp"
+               android:layout_marginRight="2dp"
+               android:background="@color/fragment_info_row_background"
+               android:paddingBottom="8dp"
+               android:paddingTop="8dp" >
+
+               <TextView
+                   android:id="@+id/infocountry_t"
+                   android:layout_width="wrap_content"
+                   android:layout_height="fill_parent"
+                   android:gravity="center_vertical"
+                   android:paddingLeft="10dp"
+                   android:text="国籍"
+                   android:textColor="#AAAAAA"
+                   android:textSize="16sp" />
+
+               <TextView
+                   android:id="@+id/infocountry_c"
+                   android:layout_width="wrap_content"
+                   android:layout_height="fill_parent"
+                   android:gravity="center_vertical"
+                   android:paddingLeft="20dp"
+                   android:text="中国"
+                   android:textColor="#AAAAAA"
+                   android:textSize="16sp" />
+           </TableRow>
+
+           <TableRow
+               android:id="@+id/inforace"
+               android:layout_width="fill_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginBottom="1dp"
+               android:layout_marginLeft="2dp"
+               android:layout_marginRight="2dp"
+               android:background="@color/fragment_info_row_background"
+               android:paddingBottom="8dp"
+               android:paddingTop="8dp" >
+
+               <TextView
+                   android:id="@+id/inforace_t"
+                   android:layout_width="wrap_content"
+                   android:layout_height="fill_parent"
+                   android:gravity="center_vertical"
+                   android:paddingLeft="10dp"
+                   android:text="种族"
+                   android:textColor="#AAAAAA"
+                   android:textSize="16sp" />
+
+               <TextView
+                   android:id="@+id/inforace_c"
+                   android:layout_width="wrap_content"
+                   android:layout_height="fill_parent"
+                   android:gravity="center_vertical"
+                   android:paddingLeft="20dp"
+                   android:text="汉"
+                   android:textColor="#AAAAAA"
+                   android:textSize="16sp" />
+           </TableRow>
+
+           <TableRow
+               android:id="@+id/infobloodtype"
+               android:layout_width="fill_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginBottom="1dp"
+               android:layout_marginLeft="2dp"
+               android:layout_marginRight="2dp"
+               android:background="@color/fragment_info_row_background"
+               android:paddingBottom="8dp"
+               android:paddingTop="8dp" >
+
+               <TextView
+                   android:id="@+id/infobloodtype_t"
+                   android:layout_width="wrap_content"
+                   android:layout_height="fill_parent"
+                   android:gravity="center_vertical"
+                   android:paddingLeft="10dp"
+                   android:text="血型"
+                   android:textColor="#AAAAAA"
+                   android:textSize="16sp" />
+
+               <TextView
+                   android:id="@+id/infobloodtype_c"
+                   android:layout_width="wrap_content"
+                   android:layout_height="fill_parent"
+                   android:gravity="center_vertical"
+                   android:paddingLeft="20dp"
+                   android:text="A"
+                   android:textColor="#AAAAAA"
+                   android:textSize="16sp" />
+           </TableRow>
+
+           <TableRow
+               android:id="@+id/infojob"
+               android:layout_width="fill_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginBottom="1dp"
+               android:layout_marginLeft="2dp"
+               android:layout_marginRight="2dp"
+               android:background="@color/fragment_info_row_background"
+               android:paddingBottom="8dp"
+               android:paddingTop="8dp" >
+
+               <TextView
+                   android:id="@+id/infojob_t"
+                   android:layout_width="wrap_content"
+                   android:layout_height="fill_parent"
+                   android:gravity="center_vertical"
+                   android:paddingLeft="10dp"
+                   android:text="职业"
+                   android:textColor="#AAAAAA"
+                   android:textSize="16sp" />
+
+               <TextView
+                   android:id="@+id/infojob_c"
+                   android:layout_width="wrap_content"
+                   android:layout_height="fill_parent"
+                   android:gravity="center_vertical"
+                   android:paddingLeft="20dp"
+                   android:text="不便分类的其他从业人员"
+                   android:textColor="#AAAAAA"
+                   android:textSize="16sp" />
+           </TableRow>
+
+           <TableRow
+               android:id="@+id/infograde"
+               android:layout_width="fill_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginBottom="1dp"
+               android:layout_marginLeft="2dp"
+               android:layout_marginRight="2dp"
+               android:background="@color/fragment_info_row_background"
+               android:paddingBottom="8dp"
+               android:paddingTop="8dp" >
+
+               <TextView
+                   android:id="@+id/infograde_t"
+                   android:layout_width="wrap_content"
+                   android:layout_height="fill_parent"
+                   android:gravity="center_vertical"
+                   android:paddingLeft="10dp"
+                   android:text="受教育程度"
+                   android:textColor="#AAAAAA"
+                   android:textSize="16sp" />
+
+               <TextView
+                   android:id="@+id/infograde_c"
+                   android:layout_width="wrap_content"
+                   android:layout_height="fill_parent"
+                   android:gravity="center_vertical"
+                   android:paddingLeft="20dp"
+                   android:text="未知"
+                   android:textColor="#AAAAAA"
+                   android:textSize="16sp" />
+           </TableRow>
+       </TableLayout>
+
+       <TableLayout
+           android:id="@+id/infocontactlayout"
+           android:layout_width="fill_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="10dp"
+           android:shrinkColumns="1"
+           android:stretchColumns="1" >
+
+           <TableRow
+               android:id="@+id/infocontactrow0"
+               android:layout_width="fill_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginBottom="1dp"
+               android:layout_marginLeft="2dp"
+               android:layout_marginRight="2dp"
+               android:background="@color/fragment_info_row_background"
+               android:paddingBottom="8dp"
+               android:paddingTop="8dp" >
+
+               <TextView
+                   android:id="@+id/infocontact_t"
+                   android:layout_width="wrap_content"
+                   android:layout_height="fill_parent"
+                   android:gravity="center_vertical"
+                   android:paddingLeft="10dp"
+                   android:text="联系方式"
+                   android:textColor="#000000"
+                   android:textSize="16sp" />
+
+               <ImageView
+                   android:id="@+id/infocontact_edit"
+                   android:layout_width="wrap_content"
+                   android:layout_height="fill_parent"
+                   android:layout_gravity="right"
+                   android:gravity="center_vertical"
+                   android:paddingRight="20.0dip"
+                   android:src="@drawable/ic_info_edit" />
+           </TableRow>
+
+           <TableRow
+               android:id="@+id/infohomephone"
+               android:layout_width="fill_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginBottom="1dp"
+               android:layout_marginLeft="2dp"
+               android:layout_marginRight="2dp"
+               android:background="@color/fragment_info_row_background"
+               android:paddingBottom="8dp"
+               android:paddingTop="8dp" >
+
+               <TextView
+                   android:id="@+id/infohomephone_t"
+                   android:layout_width="wrap_content"
+                   android:layout_height="fill_parent"
+                   android:gravity="center_vertical"
+                   android:paddingLeft="10dp"
+                   android:text="家庭电话"
+                   android:textColor="#AAAAAA"
+                   android:textSize="16sp" />
+
+               <TextView
+                   android:id="@+id/infohomephone_c"
+                   android:layout_width="wrap_content"
+                   android:layout_height="fill_parent"
+                   android:gravity="center_vertical"
+                   android:paddingLeft="20dp"
+                   android:text="  "
+                   android:textColor="#AAAAAA"
+                   android:textSize="16sp" />
+           </TableRow>
+
+           <TableRow
+               android:id="@+id/infohomeadress"
+               android:layout_width="fill_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginBottom="1dp"
+               android:layout_marginLeft="2dp"
+               android:layout_marginRight="2dp"
+               android:background="@color/fragment_info_row_background"
+               android:paddingBottom="8dp"
+               android:paddingTop="8dp" >
+
+               <TextView
+                   android:id="@+id/infohomeadress_t"
+                   android:layout_width="wrap_content"
+                   android:layout_height="fill_parent"
+                   android:gravity="center_vertical"
+                   android:paddingLeft="10dp"
+                   android:text="家庭住址"
+                   android:textColor="#AAAAAA"
+                   android:textSize="16sp" />
+
+               <TextView
+                   android:id="@+id/infohomeadress_c"
+                   android:layout_width="wrap_content"
+                   android:layout_height="fill_parent"
+                   android:gravity="center_vertical"
+                   android:paddingLeft="20dp"
+                   android:singleLine="false"
+                   android:text="北京市西城区……"
+                   android:textColor="#AAAAAA"
+                   android:textSize="16sp" />
+           </TableRow>
+
+           <TableRow
+               android:id="@+id/infomobile"
+               android:layout_width="fill_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginBottom="1dp"
+               android:layout_marginLeft="2dp"
+               android:layout_marginRight="2dp"
+               android:background="@color/fragment_info_row_background"
+               android:paddingBottom="8dp"
+               android:paddingTop="8dp" >
+
+               <TextView
+                   android:id="@+id/infomobile_t"
+                   android:layout_width="wrap_content"
+                   android:layout_height="fill_parent"
+                   android:gravity="center_vertical"
+                   android:paddingLeft="10dp"
+                   android:text="手机"
+                   android:textColor="#AAAAAA"
+                   android:textSize="16sp" />
+
+               <TextView
+                   android:id="@+id/infomobile_c"
+                   android:layout_width="wrap_content"
+                   android:layout_height="fill_parent"
+                   android:gravity="center_vertical"
+                   android:paddingLeft="20dp"
+                   android:singleLine="false"
+                   android:text="13901185480"
+                   android:textColor="#AAAAAA"
+                   android:textSize="16sp" />
+           </TableRow>
+
+           <TableRow
+               android:id="@+id/infoworkadress"
+               android:layout_width="fill_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginBottom="1dp"
+               android:layout_marginLeft="2dp"
+               android:layout_marginRight="2dp"
+               android:background="@color/fragment_info_row_background"
+               android:paddingBottom="8dp"
+               android:paddingTop="8dp" >
+
+               <TextView
+                   android:id="@+id/infoworkadress_t"
+                   android:layout_width="wrap_content"
+                   android:layout_height="fill_parent"
+                   android:gravity="center_vertical"
+                   android:paddingLeft="10dp"
+                   android:text="工作单位"
+                   android:textColor="#AAAAAA"
+                   android:textSize="16sp" />
+
+               <TextView
+                   android:id="@+id/infoworkadress_c"
+                   android:layout_width="wrap_content"
+                   android:layout_height="fill_parent"
+                   android:gravity="center_vertical"
+                   android:paddingLeft="20dp"
+                   android:singleLine="false"
+                   android:text="北京市展览路"
+                   android:textColor="#AAAAAA"
+                   android:textSize="16sp" />
+           </TableRow>
+
+           <TableRow
+               android:id="@+id/infoworkphone"
+               android:layout_width="fill_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginBottom="1dp"
+               android:layout_marginLeft="2dp"
+               android:layout_marginRight="2dp"
+               android:background="@color/fragment_info_row_background"
+               android:paddingBottom="8dp"
+               android:paddingTop="8dp" >
+
+               <TextView
+                   android:id="@+id/infoworkphone_t"
+                   android:layout_width="wrap_content"
+                   android:layout_height="fill_parent"
+                   android:gravity="center_vertical"
+                   android:paddingLeft="10dp"
+                   android:text="工作电话"
+                   android:textColor="#AAAAAA"
+                   android:textSize="16sp" />
+
+               <TextView
+                   android:id="@+id/infoworkphone_c"
+                   android:layout_width="wrap_content"
+                   android:layout_height="fill_parent"
+                   android:gravity="center_vertical"
+                   android:paddingLeft="20dp"
+                   android:singleLine="false"
+                   android:text=" "
+                   android:textColor="#AAAAAA"
+                   android:textSize="16sp" />
+           </TableRow>
+       </TableLayout>
+
+       <TableLayout
+           android:id="@+id/infopasslayout"
+           android:layout_width="fill_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="10dp"
+           android:shrinkColumns="0"
+           android:stretchColumns="0" >
+
+           <TableRow
+               android:id="@+id/infopassrow0"
+               android:layout_width="fill_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginBottom="1dp"
+               android:layout_marginLeft="2dp"
+               android:layout_marginRight="2dp"
+               android:background="@color/fragment_info_row_background"
+               android:paddingBottom="8dp"
+               android:paddingTop="8dp" >
+
+               <TextView
+                   android:id="@+id/infopass_t"
+                   android:layout_width="wrap_content"
+                   android:layout_height="fill_parent"
+                   android:gravity="center_vertical"
+                   android:paddingLeft="10dp"
+                   android:text="既往史"
+                   android:textColor="#000000"
+                   android:textSize="16sp" />
+
+               <ImageView
+                   android:id="@+id/infopass_edit"
+                   android:layout_width="wrap_content"
+                   android:layout_height="fill_parent"
+                   android:layout_gravity="right"
+                   android:gravity="center_vertical"
+                   android:paddingRight="20.0dip"
+                   android:src="@drawable/ic_info_edit" />
+           </TableRow>
+
+           <TableRow
+               android:id="@+id/infopass"
+               android:layout_width="fill_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginBottom="1dp"
+               android:layout_marginLeft="2dp"
+               android:layout_marginRight="2dp"
+               android:background="@color/fragment_info_row_background"
+               android:paddingBottom="8dp"
+               android:paddingTop="8dp" >
+
+               <TextView
+                   android:id="@+id/infopass_c"
+                   android:layout_width="wrap_content"
+                   android:layout_height="fill_parent"
+                   android:layout_span="2"
+                   android:gravity="center_vertical"
+                   android:paddingLeft="20dp"
+                   android:paddingRight="20dp"
+                   android:singleLine="false"
+                   android:text="高血压、扁桃体手术"
+                   android:textColor="#AAAAAA"
+                   android:textSize="16sp" />
+           </TableRow>
+       </TableLayout>
+
+       <TableLayout
+           android:id="@+id/infoallergylayout"
+           android:layout_width="fill_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="10dp"
+           android:shrinkColumns="0"
+           android:stretchColumns="0" >
+
+           <TableRow
+               android:id="@+id/infoallergyrow0"
+               android:layout_width="fill_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginBottom="1dp"
+               android:layout_marginLeft="2dp"
+               android:layout_marginRight="2dp"
+               android:background="@color/fragment_info_row_background"
+               android:paddingBottom="8dp"
+               android:paddingTop="8dp" >
+
+               <TextView
+                   android:id="@+id/infoallergy_t"
+                   android:layout_width="wrap_content"
+                   android:layout_height="fill_parent"
+                   android:gravity="center_vertical"
+                   android:paddingLeft="10dp"
+                   android:text="过敏史"
+                   android:textColor="#000000"
+                   android:textSize="16sp" />
+
+               <ImageView
+                   android:id="@+id/infoallergy_edit"
+                   android:layout_width="wrap_content"
+                   android:layout_height="fill_parent"
+                   android:layout_gravity="right"
+                   android:gravity="center_vertical"
+                   android:paddingRight="20.0dip"
+                   android:src="@drawable/ic_info_edit" />
+           </TableRow>
+
+           <TableRow
+               android:id="@+id/infoallergy"
+               android:layout_width="fill_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginBottom="1dp"
+               android:layout_marginLeft="2dp"
+               android:layout_marginRight="2dp"
+               android:background="@color/fragment_info_row_background"
+               android:paddingBottom="8dp"
+               android:paddingTop="8dp" >
+
+               <TextView
+                   android:id="@+id/infoallergy_c"
+                   android:layout_width="wrap_content"
+                   android:layout_height="fill_parent"
+                   android:layout_span="2"
+                   android:gravity="center_vertical"
+                   android:paddingLeft="20dp"
+                   android:paddingRight="20dp"
+                   android:singleLine="false"
+                   android:text="花粉过敏"
+                   android:textColor="#AAAAAA"
+                   android:textSize="16sp" />
+           </TableRow>
+       </TableLayout>
+
+       <TableLayout
+           android:id="@+id/infofamilylayout"
+           android:layout_width="fill_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="10dp"
+           android:shrinkColumns="0"
+           android:stretchColumns="0" >
+
+           <TableRow
+               android:id="@+id/infofamilyrow0"
+               android:layout_width="fill_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginBottom="1dp"
+               android:layout_marginLeft="2dp"
+               android:layout_marginRight="2dp"
+               android:background="@color/fragment_info_row_background"
+               android:paddingBottom="8dp"
+               android:paddingTop="8dp" >
+
+               <TextView
+                   android:id="@+id/infofamily_t"
+                   android:layout_width="wrap_content"
+                   android:layout_height="fill_parent"
+                   android:gravity="center_vertical"
+                   android:paddingLeft="10dp"
+                   android:text="家族史"
+                   android:textColor="#000000"
+                   android:textSize="16sp" />
+
+               <ImageView
+                   android:id="@+id/infofamily_edit"
+                   android:layout_width="wrap_content"
+                   android:layout_height="fill_parent"
+                   android:layout_gravity="right"
+                   android:gravity="center_vertical"
+                   android:paddingRight="20.0dip"
+                   android:src="@drawable/ic_info_edit" />
+           </TableRow>
+
+           <TableRow
+               android:id="@+id/infofamily"
+               android:layout_width="fill_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginBottom="1dp"
+               android:layout_marginLeft="2dp"
+               android:layout_marginRight="2dp"
+               android:background="@color/fragment_info_row_background"
+               android:paddingBottom="8dp"
+               android:paddingTop="8dp" >
+
+               <TextView
+                   android:id="@+id/infofamily_c"
+                   android:layout_width="wrap_content"
+                   android:layout_height="fill_parent"
+                   android:layout_span="2"
+                   android:gravity="center_vertical"
+                   android:paddingLeft="20dp"
+                   android:paddingRight="20dp"
+                   android:singleLine="false"
+                   android:text="配偶及子女体健"
+                   android:textColor="#AAAAAA"
+                   android:textSize="16sp" />
+           </TableRow>
+       </TableLayout>
+   </LinearLayout>
+   </LinearLayout>
+
+</LinearLayout>
+    
+
+</ScrollView>

@@ -64,6 +64,26 @@
             android:name=".MyTestActivity"
             android:label="@string/title_activity_my_test" >
         </activity>
+        <activity
+            android:name=".NewTestActivity"
+            android:label="@string/title_activity_new_test" >
+        </activity>
+        <activity
+            android:name=".CheckInfo"
+            android:label="@string/title_activity_check_info" >
+        </activity>
+        <activity
+            android:name=".CaseHistory"
+            android:label="@string/title_activity_case_history" >
+        </activity>
+        <activity
+            android:name=".Schedule"
+            android:label="@string/title_activity_schedule" >
+        </activity>
+        <activity
+            android:name=".TestToothhome"
+            android:label="@string/title_activity_test_toothhome" >
+        </activity>
     </application>
 
 </manifest>

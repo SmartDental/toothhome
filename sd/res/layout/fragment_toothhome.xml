@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fragment_toothhome"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
@@ -10,14 +11,14 @@
         android:textColor="@color/app_blue1"
         android:bufferType="@color/app_white"
         android:text="成员1"/>
-<Button android:id="@+id/class_ok"
+<Button android:id="@+id/class_ok1"
         android:layout_gravity="center_vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/app_blue1"
         android:bufferType="@color/app_white"
         android:text="成员2"/>
-<Button android:id="@+id/class_ok"
+<Button android:id="@+id/class_ok2"
         android:layout_gravity="center_vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
