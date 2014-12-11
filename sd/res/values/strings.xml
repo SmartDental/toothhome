@@ -17,10 +17,6 @@
     <string name="title_activity_edit_family">编辑家族史</string>
     <string name="title_activity_oneday_appoint">个人预约查看</string>
     <string name="title_activity_my_test">MyTestActivity</string>
-    <string name="title_activity_new_test">NewTestActivity</string>
-    <string name="title_activity_check_info">成员信息</string>
-    <string name="title_activity_case_history">成员病历</string>
-    <string name="title_activity_schedule">日程管理</string>
     <string name="title_activity_test_toothhome">TestToothhome</string>
 
 </resources>

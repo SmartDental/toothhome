@@ -1,3 +1,6 @@
+/*
+ * ×÷Õß£ºÅíÓÑ
+ */
 package com.edu.thss.smartdental;
 
 import android.os.Bundle;  
@@ -13,6 +16,7 @@ public class TestToothhome extends FragmentActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		getWindow().setTitle("233");
 		setContentView(R.layout.activity_test_toothhome); 
         fragmentManager = getSupportFragmentManager();  
         fragmentTransaction = fragmentManager.beginTransaction();  

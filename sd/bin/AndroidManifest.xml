@@ -4,6 +4,8 @@
     android:versionCode="1"
     android:versionName="1.0" >
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="18" />
@@ -65,25 +67,19 @@
             android:label="@string/title_activity_my_test" >
         </activity>
         <activity
-            android:name=".NewTestActivity"
-            android:label="@string/title_activity_new_test" >
-        </activity>
-        <activity
-            android:name=".CheckInfo"
-            android:label="@string/title_activity_check_info" >
-        </activity>
-        <activity
-            android:name=".CaseHistory"
-            android:label="@string/title_activity_case_history" >
-        </activity>
-        <activity
-            android:name=".Schedule"
-            android:label="@string/title_activity_schedule" >
-        </activity>
-        <activity
             android:name=".TestToothhome"
-            android:label="@string/title_activity_test_toothhome" >
+            android:label="我的牙一家" >
         </activity>
+        <receiver android:name=".CalendarNotificationReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.C_ACTION" />
+            </intent-filter>
+        </receiver>
+        <service android:name=".CalendarAlarmServer" >
+            <intent-filter>
+                <action android:name="android.intent.action.START_SREVER" />
+            </intent-filter>
+        </service>s
     </application>
 
 </manifest>

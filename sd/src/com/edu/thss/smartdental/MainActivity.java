@@ -1,3 +1,6 @@
+/*
+ * ĞŞ¸ÄÈË£ºÅíÓÑ
+ */
 package com.edu.thss.smartdental;
 
 import java.util.ArrayList;

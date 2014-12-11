@@ -1,28 +1,90 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- 作者：陈章政 孙浩 王安琪-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/fragment_toothhome"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
-<Button android:id="@+id/class_ok"
-        android:layout_gravity="center_vertical"
-        android:layout_width="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/fragment_background" >
+    
+    <LinearLayout
+        android:id="@+id/class_ok"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/app_blue1"
-        android:bufferType="@color/app_white"
-        android:text="成员1"/>
-<Button android:id="@+id/class_ok1"
-        android:layout_gravity="center_vertical"
-        android:layout_width="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:background="@color/app_white" >
+		
+        <ImageView
+           android:id="@+id/infoImageItem_1"
+           android:layout_width="80dp"
+           android:layout_height="80dp"
+           android:src="@drawable/me" />
+        
+    	<Button android:id="@+id/class_ok_0"
+        	android:layout_width="wrap_content"
+        	android:layout_height="80dp"
+        	android:textColor="@color/app_blue"
+        	android:background="@color/app_white"
+        	android:gravity="center"
+        	android:paddingLeft="30dp"
+        	android:text="我"/>
+    </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/class_ok_l1"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/app_blue1"
-        android:bufferType="@color/app_white"
-        android:text="成员2"/>
-<Button android:id="@+id/class_ok2"
-        android:layout_gravity="center_vertical"
-        android:layout_width="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/app_white" >
+    	
+        <ImageView
+           android:id="@+id/infoImageItem_2"
+           android:layout_width="80dp"
+           android:layout_height="80dp"
+           android:src="@drawable/father" />
+    	
+    	<Button android:id="@+id/class_ok_2"
+        	android:layout_width="wrap_content"
+        	android:layout_height="80dp"
+        	android:textColor="@color/app_blue"
+        	android:background="@color/app_white"
+        	android:gravity="center"
+        	android:paddingLeft="30dp"
+        	android:text="爸爸"/>
+    </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/class_ok_l2"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/app_blue1"
-        android:bufferType="@color/app_white"
-        android:text="成员3"/>
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/app_white" >
+    
+        <ImageView
+           android:id="@+id/infoImageItem_3"
+           android:layout_width="80dp"
+           android:layout_height="80dp"
+           android:src="@drawable/mother" />
+        
+    	<Button android:id="@+id/class_ok_3"
+        	android:layout_width="wrap_content"
+        	android:layout_height="80dp"
+        	android:textColor="@color/app_blue"
+        	android:background="@color/app_white"
+        	android:gravity="center"
+        	android:paddingLeft="30dp"
+        	android:text="妈妈"/>
+    
+    </LinearLayout>
 </LinearLayout>

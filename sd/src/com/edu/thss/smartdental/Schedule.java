@@ -1,3 +1,6 @@
+/*
+ * 作者：陈章政 孙浩 王安琪 三人结对
+ */
 package com.edu.thss.smartdental;
 
 import java.util.Date;
