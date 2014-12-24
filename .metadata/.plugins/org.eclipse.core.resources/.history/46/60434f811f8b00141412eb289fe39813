@@ -74,7 +74,7 @@
             android:layout_margin="10sp"
             android:layout_toRightOf="@+id/textView1"
             android:ems="10"
-            android:padding="10sp"
+            android:padding="2sp"
             android:background="@drawable/back">
 
             <requestFocus android:layout_width="wrap_content" />
@@ -176,8 +176,8 @@
             android:minLines="3"
             android:maxLines="3"
             android:inputType="textMultiLine"
-            android:padding="10sp"
-            android:text="yourusername"
+            android:padding="20sp"
+            android:text="23333"
             android:background="@drawable/back" />
 
     <RelativeLayout
