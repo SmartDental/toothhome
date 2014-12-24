@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
+
     <TableLayout
         android:id="@+id/tableLayout1"
         android:layout_width="wrap_content"
@@ -12,97 +13,22 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true" >
 
-
-
-        <TableRow
-            android:id="@+id/tableRow2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-			<TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="日程名称："
-                    android:layout_margin="10sp"
-                    android:textSize="15sp" />
-
-			<TextView
-			    android:id="@+id/detail_name"
-			    android:layout_width="wrap_content"
-			    android:layout_height="wrap_content"
-			    android:layout_margin="10sp"
-			    
-			    android:text="看牙医" />
-
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-			<TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="提醒时间："
-                    android:layout_margin="10sp"
-                    android:textSize="15sp" />
-
-			    <TextView
-			    android:id="@+id/detail_time"
-			    android:layout_width="wrap_content"
-			    android:layout_height="wrap_content"
-			    android:layout_margin="10sp"
-			    android:text="17:30" />
-
-			
-			
-
-        </TableRow>
-
         <TableRow
             android:id="@+id/tableRow4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
-			<TextView
-                    android:id="@+id/textView4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="具体描述："
-                    android:layout_margin="10sp"
-                    android:textSize="15sp" />
+
 			<android.widget.TextView
                 android:id="@+id/detail_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10sp"
-                android:inputType="textMultiLine"
-                android:text="233333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333" /> />
+                android:layout_margin="20sp"
+                android:textSize="15sp"
+                android:inputType="textMultiLine"/>
 
 
         </TableRow>
-        
-        
-        <TableRow
-            android:id="@+id/tableRow5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-			<TextView
-                    android:id="@+id/textView5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="来自："
-                    android:layout_margin="10sp"
-                    android:textSize="15sp" />
 
-			<TextView
-			    android:id="@+id/detail_fromUser"
-			    android:layout_width="wrap_content"
-			    android:layout_height="wrap_content"
-			    android:layout_margin="10sp"
-			    android:text="fromUser" />
-
-        </TableRow>
     </TableLayout>
 
 

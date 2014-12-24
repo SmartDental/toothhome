@@ -17,22 +17,25 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
 public class ScheduleDetailFragment extends Fragment {
 	public Fragment cur = this;
-	private Button btnChangeTime;
 	private View myView = null;
 	private int year = 0;
 	private int month = 0;
@@ -44,24 +47,27 @@ public class ScheduleDetailFragment extends Fragment {
 		int hour = c.get(Calendar.HOUR_OF_DAY);
 		int minute = c.get(Calendar.MINUTE);
 		setTime(tvDisplayTime, hour, minute);
-
-		btnChangeTime = (Button) myView.findViewById(R.id.time_btn);
-
-		btnChangeTime.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				FragmentManager fm = getActivity().getSupportFragmentManager();
-				MyTimePicker tp = new MyTimePicker(tvDisplayTime);
-//				TimePickerDialog td = new TimePickerDialog(getActivity(), timePickerListener, hour, minute,
-//    					false);
-                tp.show(fm, "fragment_schedule_detail"); 
-
-//				getActivity().showDialog(TIME_DIALOG_ID);
-
-			}
- 
-		});
+		final ImageView btnChangeTime;
+		btnChangeTime = (ImageView) myView.findViewById(R.id.time_btn);
+		btnChangeTime.setOnTouchListener(new OnTouchListener() {
+            @Override
+            public boolean onTouch(View arg0, MotionEvent arg1) {
+                switch (arg1.getAction()) {
+                case MotionEvent.ACTION_DOWN: {
+                	btnChangeTime.setAlpha(1.0f);
+                    break;
+                }
+                case MotionEvent.ACTION_UP:{
+                	btnChangeTime.setAlpha(0.5f);
+                	FragmentManager fm = getActivity().getSupportFragmentManager();
+    				MyTimePicker tp = new MyTimePicker(tvDisplayTime);
+                    tp.show(fm, "fragment_schedule_detail"); 
+                    break;
+                }
+                }
+                return true;
+            }
+        });
 
 	}
 	
@@ -92,8 +98,7 @@ public class ScheduleDetailFragment extends Fragment {
 		month = Integer.parseInt(m);
 		day = Integer.parseInt(d);
 		final String action = this.getArguments().getString("action");
-		
-		
+
 		final View rootView = inflater.inflate(R.layout.fragment_schedule_edit, container, false);
 		myView = rootView;
 		Button cancel = (Button)rootView.findViewById(R.id.edit_cancel);
@@ -115,6 +120,7 @@ public class ScheduleDetailFragment extends Fragment {
 			   
 			   @Override
 			   public void onClick(View arg0) {
+				   FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
 				   Fragment fragment  = new ScheduleFragment();
 				   Calendar cal = Calendar.getInstance();
 				   Bundle bundle = new Bundle();
@@ -123,11 +129,11 @@ public class ScheduleDetailFragment extends Fragment {
 			        bundle.putString("day", String.valueOf(day));
 	                fragment.setArguments(bundle);
 					if(fragment != null){
-						FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+						//FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
 						fragmentManager.popBackStack();
 						fragmentManager.beginTransaction()
 						.hide(cur)
-						.replace(R.id.test_activity,fragment).commit();
+						.replace(R.id.content_frame,fragment).commit();
 						getActivity().getSupportFragmentManager().executePendingTransactions();
 					}
 			   }
@@ -158,6 +164,7 @@ public class ScheduleDetailFragment extends Fragment {
 				else{
 					sm.addSchedule(se);
 				}
+				FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
 				Fragment fragment  = new ScheduleFragment();
 				Bundle bundle = new Bundle();
                 bundle.putString("action", "add");
@@ -166,11 +173,11 @@ public class ScheduleDetailFragment extends Fragment {
 		        bundle.putString("day", String.valueOf(day));
                 fragment.setArguments(bundle);
 					if(fragment != null){
-						FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+						//FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
 						fragmentManager.popBackStack();
 						fragmentManager.beginTransaction()
 						.hide(cur)
-						.replace(R.id.test_activity,fragment)
+						.replace(R.id.content_frame,fragment)
 						.commit();
 						
 					}

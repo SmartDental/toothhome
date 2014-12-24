@@ -16,18 +16,11 @@ public class ScheduleDetailDialog extends DialogFragment{
 	            Bundle savedInstanceState) {
 	        View view = inflater.inflate(R.layout.fragment_schedule_detail, container);
 	        getDialog().setTitle("查看日程");
-	        TextView name = (TextView)view.findViewById(R.id.detail_name);
-	        TextView description = (TextView)view.findViewById(R.id.detail_description);
-	        TextView time = (TextView)view.findViewById(R.id.detail_time);
-	        String n = this.getArguments().getString("name");
-	        String d = this.getArguments().getString("description");
-	        String t = this.getArguments().getString("time");
-	        name.setText(n);
-	        description.setText(d);
-	        time.setText(t);
-	        
-	        description.setWidth(270);
 
+	        TextView description = (TextView)view.findViewById(R.id.detail_description);
+	        String d = this.getArguments().getString("description");
+	        description.setText(d);
+	        description.setWidth(270);
 	        return view;
 	    }
 	 

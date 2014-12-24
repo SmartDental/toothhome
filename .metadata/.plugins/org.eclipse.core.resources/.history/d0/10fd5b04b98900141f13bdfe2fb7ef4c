@@ -1,0 +1,137 @@
+package com.edu.thss.smartdental.adapter;
+
+import com.edu.thss.smartdental.R;
+import com.edu.thss.smartdental.ScheduleDetailFragment;
+import com.edu.thss.smartdental.ScheduleFragment;
+
+import android.content.Context;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.View.OnTouchListener;
+
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.view.MotionEvent;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+
+import com.edu.thss.smartdental.db.ScheduleManager;
+import com.edu.thss.smartdental.model.ScheduleElement;
+import com.nhaarman.listviewanimations.ArrayAdapter;
+
+public class ScheduleListAdapter extends ArrayAdapter<ScheduleElement> {
+	
+	private final FragmentActivity mContext;
+
+	public ScheduleListAdapter(final FragmentActivity context,
+			final ArrayList<ScheduleElement> items) {
+		super(items);
+		mContext = context;
+	}
+	
+	
+	private String getLen2(String s){
+		while(s.length() < 2){
+			s = '0' + s;
+		}
+		return s;
+	}
+
+    @Override
+    public long getItemId(int arg0) {
+        // TODO Auto-generated method stub
+        return getItem(arg0).hashCode();
+    }
+
+    @Override
+    public View getView(int arg0, View arg1, ViewGroup arg2) {
+        if(arg1==null)
+        {
+            arg1 = LayoutInflater.from(mContext).inflate(R.layout.schedule_item, arg2,false);
+        }
+        final ScheduleElement temp = getItem(arg0);
+        final ImageView edit = (ImageView)arg1.findViewById(R.id.schedule_edit);
+        setView(arg1, temp);
+        setEditButton(edit, temp);    
+        return arg1;
+    }
+    
+    void setView(View item, ScheduleElement se){
+        TextView hour = (TextView)item.findViewById(R.id.hour);
+        TextView min = (TextView)item.findViewById(R.id.min);
+        TextView name = (TextView)item.findViewById(R.id.name);
+        Date d = se.alertTime;
+        Calendar c = Calendar.getInstance(); 
+        c.setTime(d);
+        hour.setText(getLen2(Integer.toString(c.get(Calendar.HOUR_OF_DAY))));
+        min.setText(':' + getLen2(Integer.toString(c.get(Calendar.MINUTE))));
+        name.setText(se.name);
+    }
+    
+    Bundle setEditInfo(final ScheduleElement se){
+    	Calendar cal = Calendar.getInstance();
+        cal.setTime(se.alertTime);
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        String hour = getLen2(Integer.toString(cal.get(Calendar.HOUR_OF_DAY)));
+        String min = getLen2(Integer.toString(cal.get(Calendar.MINUTE)));
+    	Bundle bundle = new Bundle();
+        bundle.putString("id", String.valueOf(se.id));
+        bundle.putString("action", "edit");
+        bundle.putString("name", se.name);
+        bundle.putString("time", hour+':'+min);
+        bundle.putString("description", se.description);
+        bundle.putString("year", String.valueOf(year));
+        bundle.putString("month", String.valueOf(month));
+        bundle.putString("day", String.valueOf(day));
+        return bundle;
+    }
+    
+    void jumpToEdit(final ScheduleElement se){
+    	Fragment fragment  = new ScheduleDetailFragment();
+    	if(fragment != null){
+    	   fragment.setArguments(setEditInfo(se));
+    	   FragmentManager fragmentManager = mContext.getSupportFragmentManager();
+    	   fragmentManager.beginTransaction()
+    	        		.replace(R.id.test_activity,fragment,"newFragment2")
+    	        		.addToBackStack(null)
+    	        		.commit();
+    	}
+    }
+    
+    void setEditButton(final ImageView edit, final ScheduleElement se){
+      edit.setOnTouchListener(new OnTouchListener() {
+      @Override
+      public boolean onTouch(View arg0, MotionEvent arg1) {
+          switch (arg1.getAction()) {
+          	case MotionEvent.ACTION_DOWN: {
+          		edit.setAlpha(1.0f);
+          		break;
+          	}
+          	case MotionEvent.ACTION_UP:{
+          		edit.setAlpha(0.5f);
+          		jumpToEdit(se);
+          		break;
+          	}
+          }
+          return true;
+      	}
+      });
+    }
+    
+    @Override
+    public boolean hasStableIds() {
+      return true;
+    }
+
+}

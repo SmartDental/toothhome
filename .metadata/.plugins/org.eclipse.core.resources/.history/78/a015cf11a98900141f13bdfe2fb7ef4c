@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    
+    <TextView
+        android:id="@+id/schedule_tag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:text="上午"
+        android:ems="2" />
+
+    <TextView
+        android:id="@+id/hour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="15sp"
+        android:layout_marginLeft="15sp"
+        android:layout_marginTop="15sp"
+        android:text="17"
+        android:textColor="@android:color/holo_blue_light"
+        android:textSize="40sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/min"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/hour"
+        android:layout_alignBottom="@+id/hour"
+        android:layout_toRightOf="@+id/hour"
+        android:text=":30"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/min"
+        android:layout_alignBottom="@+id/min"
+        android:layout_marginLeft="15sp"
+        android:layout_toRightOf="@+id/min"
+        android:text="看牙医" />
+
+    <ImageView
+        android:id="@+id/schedule_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/hour"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="5sp"
+        android:layout_marginRight="10sp"
+        android:alpha="0.8"
+        android:src="@drawable/schedule_cancel" />
+
+    <ImageView
+        android:id="@+id/schedule_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/schedule_cancel"
+        android:layout_marginRight="10sp"
+        android:layout_toLeftOf="@+id/schedule_cancel"
+        android:alpha="0.8"
+        android:src="@drawable/schedule_edit" />
+
+    <TextView
+        android:id="@+id/fromUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/schedule_edit"
+        android:layout_marginRight="10sp"
+        android:layout_toLeftOf="@+id/schedule_edit"
+        android:text="fromUser"
+        android:textColor="@color/gray"
+        android:textSize="10sp" />
+
+
+
+</RelativeLayout>

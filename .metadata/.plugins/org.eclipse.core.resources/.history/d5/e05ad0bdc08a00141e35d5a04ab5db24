@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+   <RelativeLayout 
+       android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_blue"
+    android:alpha="0.8"></RelativeLayout>
+    
+<LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10sp"
+        android:layout_marginLeft="3sp"
+        android:layout_marginRight="10sp"
+        android:layout_marginTop="30sp" >
+
+        <ImageView
+            android:id="@+id/name_title"
+            android:layout_width="48sp"
+            android:layout_height="48sp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5sp"
+            android:layout_marginRight="0sp"
+            android:gravity="center"
+            android:src="@drawable/edit_title" >
+        </ImageView>
+
+        <TextView
+            android:id="@+id/textView0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5sp"
+            android:layout_toRightOf="@+id/name_title"
+            android:gravity="center"
+            android:text="编辑日程"
+            android:textColor="@color/white"
+            android:textSize="30sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10sp" >
+
+        <ImageView
+            android:id="@+id/name_pic"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="5sp"
+            android:gravity="center"
+            android:src="@drawable/edit_name" >
+        </ImageView>
+
+        <android.widget.TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="10sp"
+            android:layout_toRightOf="@+id/name_pic"
+            android:gravity="center"
+            android:text="日程名称："
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/white" />
+
+        <android.widget.EditText
+            android:id="@+id/edit_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="10sp"
+            android:layout_toRightOf="@+id/textView1"
+            android:ems="10"
+            android:gravity="center"
+            android:textColor="@color/white" >
+
+            <requestFocus android:layout_width="wrap_content" />
+        </android.widget.EditText>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10sp" >
+
+        <ImageView
+            android:id="@+id/time_pic"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="5sp"
+            android:src="@drawable/edit_time" >
+        </ImageView>
+
+        <android.widget.TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="10sp"
+            android:layout_toRightOf="@+id/time_pic"
+            android:gravity="center"
+            android:text="提醒时间："
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/white" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/textView2" >
+
+            <TextView
+                android:id="@+id/edit_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_margin="15sp"
+                android:text="17:30"
+                android:textColor="@color/white" />
+
+            <ImageView
+                android:id="@+id/time_btn"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_alignParentTop="true"
+                android:layout_margin="0sp"
+                android:layout_toRightOf="@+id/edit_time"
+                android:alpha="0.5"
+                android:src="@drawable/edit_time_btn" />
+
+            <android.widget.Chronometer
+                android:id="@+id/time_picker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="15sp"
+                android:visibility="invisible" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10sp" >
+
+        <ImageView
+            android:id="@+id/name_detail"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="5sp"
+            android:gravity="center"
+            android:src="@drawable/edit_detail" >
+        </ImageView>
+
+        <android.widget.TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="10sp"
+            android:layout_toRightOf="@+id/name_detail"
+            android:gravity="center"
+            android:text="日程名称："
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/white" />
+
+        <android.widget.EditText
+            android:id="@+id/edit_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10sp"
+            android:layout_toRightOf="@+id/textView3"
+            android:ems="10"
+            android:minLines="3"
+            android:maxLines="3"
+            android:inputType="textMultiLine"
+            android:textColor="@color/white" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <android.widget.Button
+            android:id="@+id/edit_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15sp"
+            android:layout_toLeftOf="@+id/edit_submit"
+            android:text="取消" />
+
+        <android.widget.Button
+            android:id="@+id/edit_submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_margin="15sp"
+            android:text="提交" />
+    </RelativeLayout>
+
+</LinearLayout>
+</RelativeLayout>

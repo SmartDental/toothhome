@@ -66,13 +66,13 @@ public class AppointmentFragment extends Fragment{
 //			Intent intent = new Intent(getActivity(),OnedayAppointActivity.class);
 //			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //			startActivity(intent);
-			Fragment fragment  = new ScheduleFragment();
-			if(fragment != null){
-				FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-				fragmentManager.beginTransaction().replace(R.id.test_activity,fragment,"newFragment1")
-				.addToBackStack(null)
-				.commit();
-			}
+//			Fragment fragment  = new ScheduleFragment();
+//			if(fragment != null){
+//				FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+//				fragmentManager.beginTransaction().replace(R.id.test_activity,fragment,"newFragment1")
+//				.addToBackStack(null)
+//				.commit();
+//			}
 		}  
 	 }
 }

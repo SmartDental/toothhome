@@ -73,15 +73,16 @@ public class CaseHistory extends Fragment {
 				        bundle.putString("year", String.valueOf(year));
 				        bundle.putString("month", String.valueOf(month));
 				        bundle.putString("day", String.valueOf(day));
-				        Fragment fragment  = new ScheduleFragment();
-						if(fragment != null){
-							fragment.setArguments(bundle);
-							FragmentManager fragmentManager = ta.getSupportFragmentManager();
-							fragmentManager.beginTransaction().replace(R.id.test_activity,fragment,"newFragment6")
-							.addToBackStack(null)
-							.hide(cur)
-							.commit();
-						}
+				        FragmentManager fragmentManager = ta.getSupportFragmentManager();
+//				        Fragment fragment  = new ScheduleFragment(fragmentManager);
+//						if(fragment != null){
+//							fragment.setArguments(bundle);
+//							//FragmentManager fragmentManager = ta.getSupportFragmentManager();
+//							fragmentManager.beginTransaction().replace(R.id.test_activity,fragment,"newFragment6")
+//							.addToBackStack(null)
+//							.hide(cur)
+//							.commit();
+//						}
 				    }
 
 				};

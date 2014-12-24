@@ -58,7 +58,7 @@ public class Schedule extends Fragment {
 	                getActivity()  
 	                        .getSupportFragmentManager()  
 	                        .beginTransaction()  
-	                        .replace(R.id.test_activity, new CheckInfo(),  
+	                        .replace(R.id.content_frame, new CheckInfo(),  
 	                                "Fragmenttest2")  
 	                        .commit();  
 	  
@@ -71,7 +71,7 @@ public class Schedule extends Fragment {
                 getActivity()  
                         .getSupportFragmentManager()  
                         .beginTransaction()  
-                        .replace(R.id.test_activity, new CaseHistory(),  
+                        .replace(R.id.content_frame, new CaseHistory(),  
                                 "Fragmenttest2")  
                         .commit();  
   

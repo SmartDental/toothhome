@@ -1,11 +1,15 @@
 package com.edu.thss.smartdental;
 
+import com.edu.thss.smartdental.model.ScheduleElement;
+
 import android.os.Bundle;  
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;  
 import android.support.v4.app.FragmentManager;  
 import android.support.v4.app.FragmentTransaction;  
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 public class TestToothhome extends FragmentActivity {
 	public FragmentManager fragmentManager;  
@@ -19,7 +23,7 @@ public class TestToothhome extends FragmentActivity {
   
         CheckInfo fragmentTest1 = new CheckInfo();  
   
-        fragmentTransaction.replace(R.id.test_activity, fragmentTest1,  
+        fragmentTransaction.replace(R.id.content_frame, fragmentTest1,  
                 "fragmentTest1");  
   
         fragmentTransaction.commit();  
@@ -32,6 +36,7 @@ public class TestToothhome extends FragmentActivity {
 		getMenuInflater().inflate(R.menu.test_toothhome, menu);
 		return true;
 	}
+	
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {

@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import com.edu.thss.smartdental.model.ScheduleElement;
 import com.roomorama.caldroid.CaldroidFragment;
 import com.roomorama.caldroid.CaldroidListener;
 
@@ -78,10 +79,11 @@ public class CheckInfo extends Fragment {
 				        bundle.putString("year", String.valueOf(year));
 				        bundle.putString("month", String.valueOf(month));
 				        bundle.putString("day", String.valueOf(day));
+				        FragmentManager fragmentManager = ta.getSupportFragmentManager();
 				        Fragment fragment  = new ScheduleFragment();
 						if(fragment != null){
 							fragment.setArguments(bundle);
-							FragmentManager fragmentManager = ta.getSupportFragmentManager();
+							//FragmentManager fragmentManager = ta.getSupportFragmentManager();
 							fragmentManager
 							.beginTransaction()
 							.replace(R.id.test_activity,fragment)
@@ -90,6 +92,9 @@ public class CheckInfo extends Fragment {
 							.commit();
 							
 						}
+//				        ScheduleElement se = new ScheduleElement();
+//				        jumpToEdit(se);
+				        
 				    }
 
 				};
@@ -108,6 +113,19 @@ public class CheckInfo extends Fragment {
 		return rootView;
 		
 	}
+	
+	void jumpToEdit(final ScheduleElement se){
+    	Fragment fragment  = new ScheduleDetailFragment();
+    	if(fragment != null){
+    	   //fragment.setArguments(setEditInfo(se));
+    	   FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+    	   fragmentManager.beginTransaction()
+    	        		.replace(R.id.test_activity,fragment)
+    	        		.addToBackStack(null)
+    	        		.hide(cur)
+    	        		.commit();
+    	}
+    }
 	 @Override  
 	    public void onActivityCreated(Bundle savedInstanceState) {  
 	        super.onActivityCreated(savedInstanceState);  

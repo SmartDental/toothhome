@@ -1,5 +1,6 @@
 package com.edu.thss.smartdental;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
@@ -10,13 +11,24 @@ import com.edu.thss.smartdental.model.ScheduleElement;
 import com.edu.thss.smartdental.ui.calendar.CalendarView;
 import com.edu.thss.smartdental.adapter.ScheduleListAdapter;
 import com.edu.thss.smartdental.db.ScheduleManager;
+import com.nhaarman.listviewanimations.itemmanipulation.OnDismissCallback;
+import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.SwipeDismissAdapter;
+import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.contextualundo.ContextualUndoAdapter;
+import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.contextualundo.ContextualUndoAdapter.CountDownFormatter;
+import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.contextualundo.ContextualUndoAdapter.DeleteItemCallback;
+import com.nhaarman.listviewanimations.swinginadapters.prepared.AlphaInAnimationAdapter;
+import com.nhaarman.listviewanimations.widget.DynamicListView;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -24,62 +36,150 @@ import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class ScheduleFragment extends Fragment {
-	public Fragment cur = this;
+public class ScheduleFragment extends Fragment implements OnDismissCallback, DeleteItemCallback{
 	private int year = 0;
 	private int month = 0;
 	private int day = 0;
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
+	private ScheduleManager sm = null;
+	private ScheduleListAdapter mAdapter;
+	private DynamicListView scheduleList;
+	private View rootView;
+	private Fragment cur = this;
+
+	void setDate(){
 		String y = this.getArguments().getString("year");
 		String m = this.getArguments().getString("month");
 		String d = this.getArguments().getString("day");
 		year = Integer.parseInt(y);
 		month = Integer.parseInt(m);
-		day = Integer.parseInt(d);
-		View rootView = inflater.inflate(R.layout.fragment_schedule, container,false);
+		day = Integer.parseInt(d);		
+	}
+	
+	Date getDate(){
 		Calendar cal = Calendar.getInstance();
 		cal.set(Calendar.YEAR,year);
 		cal.set(Calendar.MONTH,month);
 		cal.set(Calendar.DAY_OF_MONTH,day);
-
-		Date date = cal.getTime();
-		final ScheduleListAdapter sla = new ScheduleListAdapter(getActivity(), date);
-		
-		ListView scheduleList = (ListView)rootView.findViewById(R.id.listView);
-		scheduleList.setAdapter(sla);
-
-		
+		return  cal.getTime();
+	}
+	
+	void setListView(){
+		ArrayList<ScheduleElement> se = new ArrayList(Arrays.asList(sm.ScheduleList(getDate())));
+		mAdapter = new ScheduleListAdapter(this, se);
+		scheduleList = (DynamicListView)rootView.findViewById(R.id.listView);
+		scheduleList.setAdapter(mAdapter);
+		setAdapters();
+		setItemClickListner();
+	}
+	
+	void setAdapters(){
+		setAnimAdapter();
+		setContextualUndoAdapter();
+	}
+	
+	
+	void setAnimAdapter(){
+		AlphaInAnimationAdapter animAdapter = new AlphaInAnimationAdapter(mAdapter);
+		//animAdapter.setInitialDelayMillis(100);
+		animAdapter.setAbsListView(scheduleList);
+		scheduleList.setAdapter(animAdapter);
+		setAnimEvent(scheduleList, animAdapter);
+	}
+	
+	void setContextualUndoAdapter() {
+        ContextualUndoAdapter adapter = new ContextualUndoAdapter(mAdapter, R.layout.item_undo_row, R.id.undo_row_undobutton, this);
+        adapter.setAbsListView(scheduleList);
+        scheduleList.setAdapter(adapter);
+    }
+	
+	void setAnimEvent(DynamicListView scheduleList, final AlphaInAnimationAdapter animAdapter){
+		scheduleList.setOnItemMovedListener(new DynamicListView.OnItemMovedListener() {
+            @Override
+            public void onItemMoved(final int newPosition) {
+                
+            }
+        });
+	}
+	
+	Bundle setEditInfo(final ScheduleElement se){
+    	Calendar cal = Calendar.getInstance();
+        cal.setTime(se.alertTime);
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        String hour = (Integer.toString(cal.get(Calendar.HOUR_OF_DAY)));
+        String min = (Integer.toString(cal.get(Calendar.MINUTE)));
+    	Bundle bundle = new Bundle();
+        bundle.putString("id", String.valueOf(se.id));
+        bundle.putString("action", "edit");
+        bundle.putString("name", se.name);
+        bundle.putString("time", hour+':'+min);
+        bundle.putString("description", se.description);
+        bundle.putString("year", String.valueOf(year));
+        bundle.putString("month", String.valueOf(month));
+        bundle.putString("day", String.valueOf(day));
+        return bundle;
+    }
+    
+    public void jumpToEdit(final ScheduleElement se){
+    	Fragment fragment  = new ScheduleDetailFragment();
+    	if(fragment != null){
+    		FragmentManager fm = getActivity().getSupportFragmentManager();
+    		fm.enableDebugLogging(true);
+    	   fragment.setArguments(setEditInfo(se));
+    	        		fm.beginTransaction()
+    	        		.replace(R.id.content_frame, fragment)
+    	        		.hide(this)
+    	        		.addToBackStack(null)
+    	        		.commit();
+    	}
+    }
+    
+	void setItemClickListner(){
 		scheduleList.setOnItemClickListener(new OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
                     long arg3) {
-            	TextView th = (TextView)arg1.findViewById(R.id.hour);
-            	TextView tm = (TextView)arg1.findViewById(R.id.min);
-            	String time = th.getText().toString() +tm.getText().toString();
-            	ScheduleElement tse = sla.getItem(arg2);
-            	Bundle bundle = new Bundle();
-                bundle.putString("name", tse.name);
-                bundle.putString("description", tse.description);
-		        bundle.putString("time", time);
-		        
-            	FragmentManager fm = getActivity().getSupportFragmentManager();
-                ScheduleDetailDialog editNameDialog = new ScheduleDetailDialog();
-                editNameDialog.setArguments(bundle);
-                editNameDialog.show(fm, "fragment_schedule_detail");          
-
+            	ScheduleElement tse = mAdapter.getItem(arg2);
+            	jumpToEdit(tse);
             }
         });
-		
+	}
+	
+	Bundle getAddInfo(){
+	  Bundle bundle = new Bundle();
+      bundle.putString("action", "add");
+      bundle.putString("year", String.valueOf(year));
+      bundle.putString("month", String.valueOf(month));
+      bundle.putString("day", String.valueOf(day));
+      return bundle;
+	}
+	
+	void jumpToAdd(){
+		Fragment fragment  = new ScheduleDetailFragment();
+        
+		if(fragment != null){
+			fragment.setArguments(getAddInfo());
+			FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+			fragmentManager.beginTransaction()
+			.hide(cur)
+			.replace(R.id.content_frame,fragment)
+			.addToBackStack(null)
+			.commit();
+		}
+	}
+	
+	void setAddButton(){
 		final ImageView add = (ImageView)rootView.findViewById(R.id.schedule_add);
 		add.setOnTouchListener(new OnTouchListener() {
             @Override
@@ -90,83 +190,39 @@ public class ScheduleFragment extends Fragment {
                     break;
                 }
                 case MotionEvent.ACTION_UP:{
-                	add.setAlpha(0.8f);
-                	Fragment fragment  = new ScheduleDetailFragment();
-                	Bundle bundle = new Bundle();
-                    bundle.putString("action", "add");
-                    bundle.putString("year", String.valueOf(year));
-			        bundle.putString("month", String.valueOf(month));
-			        bundle.putString("day", String.valueOf(day));
-                    fragment.setArguments(bundle);
-			        
-        			if(fragment != null){
-        				fragment.setArguments(bundle);
-        				FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-        				fragmentManager.beginTransaction()
-        				.hide(cur)
-        				.replace(R.id.test_activity,fragment)
-        				.addToBackStack(null)
-        				.commit();
-        			}
+                	add.setAlpha(0.5f);
+                	jumpToAdd();
                     break;
                 }
                 }
                 return true;
             }
         });
+	}
+	
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		setDate();
+		rootView = inflater.inflate(R.layout.fragment_schedule, container,false);
+		sm = new ScheduleManager(getActivity());
+		setAddButton();
+		setListView();
 		return rootView;
 	}
-	 @Override  
-	    public void onActivityCreated(Bundle savedInstanceState) {  
-	        super.onActivityCreated(savedInstanceState);  
-	  
-	    }  
-	  
-	    @Override  
-	    public void onAttach(Activity activity) {  
-	      
-	        super.onAttach(activity);  
-	    }  
-	  
-	    @Override  
-	    public void onDestroy() {  
-	        
-	        super.onDestroy();  
-	    }  
-	  
-	    @Override  
-	    public void onDestroyView() {  
-	       
-	        super.onDestroyView();  
-	    }  
-	  
-	    @Override  
-	    public void onPause() {  
-	        
-	        super.onPause();  
-	    }  
-	  
-	    @Override  
-	    public void onResume() {  
-	      
-	        super.onResume();  
-	    }  
-	  
-	    @Override  
-	    public void onStart() {  
-	        
-	        super.onStart();  
-	    }  
-	  
-	    @Override  
-	    public void onStop() {  
-	         
-	        super.onStop();  
-	    }  
-	  
-	    @Override  
-	    public void onDetach() {  
-	      
-	        super.onDetach();  
-	    }  	
+
+    @Override
+    public void onDismiss(final AbsListView listView, final int[] reverseSortedPositions) {
+        for (int position : reverseSortedPositions) {
+            mAdapter.remove(position);
+        }
+        Toast.makeText(getActivity(), "Removed positions: " + Arrays.toString(reverseSortedPositions), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void deleteItem(final int position) {
+        mAdapter.remove(position);
+        mAdapter.notifyDataSetChanged();
+    }
+
 }
