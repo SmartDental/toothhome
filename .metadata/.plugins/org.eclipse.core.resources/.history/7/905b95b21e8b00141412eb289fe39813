@@ -16,10 +16,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/user_pic"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="14dp"
+        android:layout_marginBottom="16dp"
+        android:layout_toRightOf="@+id/user_pic"
+        android:layout_centerInParent="true"
         android:text="爸爸"
-        android:textColor="@color/app_blue"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:textColor="@color/app_blue" />
 
 </RelativeLayout>
