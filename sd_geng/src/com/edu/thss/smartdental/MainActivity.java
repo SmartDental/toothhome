@@ -9,6 +9,7 @@ import com.edu.thss.smartdental.ui.drawer.NavDrawerItem;
 import com.edu.thss.smartdental.ui.drawer.NavDrawerListAdapter;
 import com.roomorama.caldroid.CaldroidFragment;
 import com.roomorama.caldroid.CaldroidListener;
+//import com.edu.thss.smartdental.Client;
 
 
 import android.os.Bundle;
@@ -147,8 +148,15 @@ public class MainActivity extends FragmentActivity implements OnItemClickListene
 		case 6: 
 			fragment = new DataFragment();
 			break;
-		case 7: 
-			fragment = new Toothhome();
+		case 7:
+			try {
+				if(Client.isConnected())
+				{
+					fragment = new Toothhome();
+				}
+			} catch (Throwable e) {
+				e.printStackTrace();
+			}
 			break;
 		case 8:
 			fragment = new SettingFragment();

@@ -6,6 +6,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import com.edu.thss.smartdental.CalendarFunction;
 import com.edu.thss.smartdental.AppointmentFragment.calendarItemClickListener;
 import com.edu.thss.smartdental.model.ScheduleElement;
 import com.edu.thss.smartdental.ui.calendar.CalendarView;
@@ -192,6 +193,7 @@ public class ScheduleFragment extends Fragment implements OnDismissCallback, Del
                 case MotionEvent.ACTION_UP:{
                 	add.setAlpha(0.5f);
                 	jumpToAdd();
+                	//jiazai
                     break;
                 }
                 }
@@ -223,6 +225,18 @@ public class ScheduleFragment extends Fragment implements OnDismissCallback, Del
     public void deleteItem(final int position) {
         mAdapter.remove(position);
         mAdapter.notifyDataSetChanged();
+        //jiazai
+        ScheduleElement se = mAdapter.getItem(position);
+        try {
+			if(CalendarFunction.send(se, "del"))
+			{
+				ScheduleManager manager = new ScheduleManager(null);
+				manager.deleteSchedule(se.id);
+			}
+		} catch (Throwable e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
 }
