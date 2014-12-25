@@ -8,7 +8,7 @@ import org.json.JSONObject;
 import com.edu.thss.smartdental.model.ScheduleElement;
 
 public class SeAndJsonExchanging {
-	public ScheduleElement JsonToSE(String json) throws JSONException{
+	public static ScheduleElement JsonToSE(String json) throws JSONException{
 		JSONObject object = new JSONObject(json);
 		ScheduleElement se = new ScheduleElement();
 		se.name = object.getString("name");
@@ -20,7 +20,7 @@ public class SeAndJsonExchanging {
 		return se;
 	}
 	
-	public String SEToJson(String operation, ScheduleElement se) throws JSONException {
+	public static String SEToJson(String operation, ScheduleElement se) throws JSONException {
 		JSONObject object = new JSONObject();
 		object.put("operation", operation);
 		object.put("name", se.name);

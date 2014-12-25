@@ -1,4 +1,7 @@
 package com.edu.thss.smartdental;
+
+import com.edu.thss.smartdental.model.ScheduleElement;
+import com.edu.thss.smartdental.db.*;
 import java.net.*;
 import java.io.*;
 import java.net.ServerSocket;
@@ -6,6 +9,8 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import org.json.JSONException;
 
 //加到main activity的case toothhome中
 public class Client 
@@ -68,26 +73,38 @@ public class Client
 	                int count = in.read(buffer);
 	                String order = new String(buffer, 0, count);
 	                String data;
+	                ScheduleElement newOne;
+	                ScheduleManager manager = new ScheduleManager(null);
 					switch(order)
 	                {
 	                case "add":
 	                    count = in.read(buffer);
 	                    data = new String(buffer, 0, count);
+	                    newOne = SeAndJsonExchanging.JsonToSE(data);
+	                    manager.addSchedule(newOne);
 	                    //添加操作
+	                    
 	                case "mod":
 	                    count = in.read(buffer);
 	                    data = new String(buffer, 0, count);
+	                    newOne = SeAndJsonExchanging.JsonToSE(data);
+	                    manager.editSchedule(newOne);
 	                    //修改操作
 	                case "del":
 	                    count = in.read(buffer);
 	                    data = new String(buffer, 0, count);
+	                    newOne = SeAndJsonExchanging.JsonToSE(data);
+	                    manager.deleteSchedule(newOne.id);
 	                    //删除操作
 	                }
 	            }
 	        }
 	        catch(IOException e){
 	            System.out.println("IOException: " + e.getMessage());
-	        }
+	        } catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	    }
 	}
 }

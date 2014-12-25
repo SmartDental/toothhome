@@ -4,11 +4,13 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import com.edu.thss.smartdental.CalendarFunction;
 import com.edu.thss.smartdental.AppointmentFragment.calendarItemClickListener;
 import com.edu.thss.smartdental.model.ScheduleElement;
 import com.edu.thss.smartdental.ui.calendar.CalendarView;
 import com.edu.thss.smartdental.adapter.ScheduleListAdapter;
 import com.edu.thss.smartdental.db.ScheduleManager;
+import com.edu.thss.smartdental.db.SeAndJsonExchanging;
 import com.edu.thss.smartdental.R;
 
 import android.app.Dialog;
@@ -160,9 +162,31 @@ public class ScheduleDetailFragment extends Fragment {
 				if (action.equals("edit")){
 					se.id = Integer.parseInt(id);
 					sm.editSchedule(se);
+					//jiazai
+					try {
+						if(CalendarFunction.send(se, "mod"))
+						{
+							ScheduleManager manager = new ScheduleManager(null);
+							manager.editSchedule(se);
+						}
+					} catch (Throwable e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 				else{
 					sm.addSchedule(se);
+					//jiazai
+					try {
+						if(CalendarFunction.send(se, "add"))
+						{
+							ScheduleManager manager = new ScheduleManager(null);
+							manager.addSchedule(se);
+						}
+					} catch (Throwable e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 				FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
 				Fragment fragment  = new ScheduleFragment();

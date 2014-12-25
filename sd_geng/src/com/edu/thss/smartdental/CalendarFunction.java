@@ -11,14 +11,31 @@ import java.net.UnknownHostException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.json.JSONException;
+
 public class CalendarFunction
 {
  	private static String serverIP = "59.66.137.187";
 	private static int clientPort = 8888;
 	private static final int serverPort = 9888;
 	private static final int bufferSize = 40960;
-    public static boolean send(ScheduleElement se,String order) throws Throwable
-    {
+	public static boolean send(ScheduleElement se,String order)
+	{
+		Thread t = new sendThread(se,order);
+		t.start();
+		return true;
+	}
+	public static class sendThread extends Thread
+	{
+		private ScheduleElement se;
+		private String order;
+		sendThread(ScheduleElement se,String order)
+		{
+			this.se = se;
+			this.order = order;
+		}
+		public void run()
+    	{
         try{
             String str;
             Socket socket = new Socket(serverIP,serverPort);
@@ -26,18 +43,20 @@ public class CalendarFunction
             OutputStream out = socket.getOutputStream();
             str = "change";  
             out.write(str.getBytes());
-            //System.out.println(str);   
-            out.write(order.getBytes());
-            System.out.println(order);
-            String data = SeAndJsonExchanging.SEToJson(order, se);
+            String data = null;
+			try {
+				data = SeAndJsonExchanging.SEToJson(order, se);
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
             out.write(data.getBytes());
             //other operations       
             socket.close();
-            return true;
         }
         catch(IOException e){
             System.out.println("IOException: " + e.getMessage());
-            return false;
-        }     
-    }
+        	}     
+    	}	
+	}
 }
