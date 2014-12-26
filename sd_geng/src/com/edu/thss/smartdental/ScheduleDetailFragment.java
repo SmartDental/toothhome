@@ -20,6 +20,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -102,6 +103,11 @@ public class ScheduleDetailFragment extends Fragment {
 		final String action = this.getArguments().getString("action");
 
 		final View rootView = inflater.inflate(R.layout.fragment_schedule_edit, container, false);
+		//add by pengyou
+		 rootView.setFocusable(true);//这个和下面的这个命令必须要设置了，才能监听back事件。  
+	     rootView.setFocusableInTouchMode(true);
+	     rootView.setOnKeyListener(backlistener); 
+		//
 		myView = rootView;
 		Button cancel = (Button)rootView.findViewById(R.id.edit_cancel);
 		Button submit = (Button)rootView.findViewById(R.id.edit_submit);
@@ -130,13 +136,12 @@ public class ScheduleDetailFragment extends Fragment {
 			        bundle.putString("month", String.valueOf(month));
 			        bundle.putString("day", String.valueOf(day));
 	                fragment.setArguments(bundle);
-					if(fragment != null){
+					if(fragment != null ){
 						//FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
 						fragmentManager.popBackStack();
 						fragmentManager.beginTransaction()
 						.hide(cur)
 						.replace(R.id.content_frame,fragment).commit();
-						getActivity().getSupportFragmentManager().executePendingTransactions();
 					}
 			   }
 			});
@@ -166,8 +171,8 @@ public class ScheduleDetailFragment extends Fragment {
 					try {
 						if(CalendarFunction.send(se, "mod"))
 						{
-							ScheduleManager manager = new ScheduleManager(null);
-							manager.editSchedule(se);
+							//ScheduleManager manager = new ScheduleManager(null);
+							//manager.editSchedule(se);
 						}
 					} catch (Throwable e) {
 						// TODO Auto-generated catch block
@@ -180,8 +185,8 @@ public class ScheduleDetailFragment extends Fragment {
 					try {
 						if(CalendarFunction.send(se, "add"))
 						{
-							ScheduleManager manager = new ScheduleManager(null);
-							manager.addSchedule(se);
+							//ScheduleManager manager = new ScheduleManager(null);
+							//manager.addSchedule(se);
 						}
 					} catch (Throwable e) {
 						// TODO Auto-generated catch block
@@ -210,6 +215,23 @@ public class ScheduleDetailFragment extends Fragment {
 		
 		return rootView;
 	}
-		
+	private View.OnKeyListener backlistener = new View.OnKeyListener() {
+		  
+        @Override  
+        public boolean onKey(View view, int i, KeyEvent keyEvent) {  
+            if (keyEvent.getAction() == KeyEvent.ACTION_DOWN) {  
+                if (i == KeyEvent.KEYCODE_BACK) {  //表示按返回键 时的操作  
+                	Fragment fragment  = new ScheduleFragment();
+                	FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                	fragmentManager.beginTransaction()
+					.hide(cur)
+					.replace(R.id.content_frame,fragment)
+					.commit();
+                    return false;    //已处理  
+                }  
+            }  
+            return false;  
+        }  
+	};
 
 }

@@ -189,5 +189,4 @@ public class MainActivity extends FragmentActivity implements OnItemClickListene
     	mTitle = title;
     	getActionBar().setTitle(mTitle);
     }
-
 }

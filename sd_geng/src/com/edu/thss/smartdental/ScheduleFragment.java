@@ -27,6 +27,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -139,7 +140,7 @@ public class ScheduleFragment extends Fragment implements OnDismissCallback, Del
     	   fragment.setArguments(setEditInfo(se));
     	        		fm.beginTransaction()
     	        		.replace(R.id.content_frame, fragment)
-    	        		.hide(this)
+    	        		.hide(cur)
     	        		.addToBackStack(null)
     	        		.commit();
     	}
@@ -207,6 +208,9 @@ public class ScheduleFragment extends Fragment implements OnDismissCallback, Del
 			Bundle savedInstanceState) {
 		setDate();
 		rootView = inflater.inflate(R.layout.fragment_schedule, container,false);
+		rootView.setFocusable(true);//这个和下面的这个命令必须要设置了，才能监听back事件。  
+		rootView.setFocusableInTouchMode(true);  
+		rootView.setOnKeyListener(backlistener);  
 		sm = new ScheduleManager(getActivity());
 		setAddButton();
 		setListView();
@@ -223,20 +227,34 @@ public class ScheduleFragment extends Fragment implements OnDismissCallback, Del
 
     @Override
     public void deleteItem(final int position) {
-        mAdapter.remove(position);
-        mAdapter.notifyDataSetChanged();
         //jiazai
         ScheduleElement se = mAdapter.getItem(position);
-        try {
-			if(CalendarFunction.send(se, "del"))
-			{
-				ScheduleManager manager = new ScheduleManager(null);
-				manager.deleteSchedule(se.id);
-			}
-		} catch (Throwable e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+        if(CalendarFunction.send(se, "del"))
+        {
+        	ScheduleManager manager = new ScheduleManager(getActivity());
+        	manager.deleteSchedule(se.id);
+        }
+        mAdapter.remove(position);
+        mAdapter.notifyDataSetChanged();
     }
-
+    
+    
+	private View.OnKeyListener backlistener = new View.OnKeyListener() {
+		  
+        @Override  
+        public boolean onKey(View view, int i, KeyEvent keyEvent) {  
+            if (keyEvent.getAction() == KeyEvent.ACTION_DOWN) {  
+                if (i == KeyEvent.KEYCODE_BACK) {  //表示按返回键 时的操作  
+                	Fragment fragment  = new Toothhome();
+                	FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                	fragmentManager.beginTransaction()
+					.hide(cur)
+					.replace(R.id.content_frame,fragment)
+					.commit();
+                    return false;    //已处理  
+                }  
+            }  
+            return false;  
+        }  
+	};
 }

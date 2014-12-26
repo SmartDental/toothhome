@@ -91,7 +91,7 @@ public class CaseHistory extends Fragment {
 
 				FragmentTransaction t = getActivity().getSupportFragmentManager().beginTransaction();
 				t.replace(R.id.test_activity, caldroidFragment,"newFragment");
-			    t.addToBackStack(null);  
+				t.addToBackStack(null);  
 				t.commit();
             }  
         });
