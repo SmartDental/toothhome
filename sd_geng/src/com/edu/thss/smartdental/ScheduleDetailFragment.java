@@ -143,8 +143,9 @@ public class ScheduleDetailFragment extends Fragment {
 			//FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
 			fragmentManager.popBackStack();
 			fragmentManager.beginTransaction()
-			.hide(cur)
-			.replace(R.id.content_frame,fragment).commit();
+			//.hide(cur);
+			//.replace(R.id.content_frame,fragment)
+			.commit();
 			getActivity().getSupportFragmentManager().executePendingTransactions();
 		}
 	}
