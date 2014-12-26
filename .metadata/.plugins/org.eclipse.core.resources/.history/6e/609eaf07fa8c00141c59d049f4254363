@@ -38,13 +38,13 @@ public class CaseHistory extends Fragment {
 	  
 	            @Override  
 	            public void onClick(View v) {  
-//	                getActivity()  
-//	                        .getSupportFragmentManager()  
-//	                        .beginTransaction()
-//	                        .hide(cur)
-//	                        .replace(R.id.test_activity, new CheckInfo(),  
-//	                                "Fragmenttest2")
-//	                        .commit();  
+	                getActivity()  
+	                        .getSupportFragmentManager()  
+	                        .beginTransaction()
+	                        .hide(cur)
+	                        .replace(R.id.test_activity, new CheckInfo(),  
+	                                "Fragmenttest2")
+	                        .commit();  
 	  
 	            }  
 	        });

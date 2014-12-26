@@ -132,7 +132,7 @@ public class CalendarAdapter extends CaldroidGridAdapter {
 		//Integer[] temp = new Integer[]{2,5,6,9,17,22,27};
 		if (dateTime.getMonth() == month && Arrays.asList(hasSchedule).contains(dateTime.getDay())){
 			star.setVisibility(View.VISIBLE);
-			if (dateTime.lt(DateTime.today(TimeZone.getDefault()))){
+			if (dateTime.lt(DateTime.now(TimeZone.getDefault()))){
 				star.setAlpha(0.5f);
 			}
 		}
