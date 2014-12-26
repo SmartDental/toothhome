@@ -6,6 +6,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import com.edu.thss.smartdental.CalendarFunction;
 import com.edu.thss.smartdental.AppointmentFragment.calendarItemClickListener;
 import com.edu.thss.smartdental.model.ScheduleElement;
 import com.edu.thss.smartdental.ui.calendar.CalendarView;
@@ -54,6 +55,8 @@ public class ScheduleFragment extends Fragment implements OnDismissCallback, Del
 	private DynamicListView scheduleList;
 	private View rootView;
 	private Fragment cur = this;
+	private String fromUser;
+	private String toUser;
 
 	void setDate(){
 		String y = this.getArguments().getString("year");
@@ -73,8 +76,8 @@ public class ScheduleFragment extends Fragment implements OnDismissCallback, Del
 	}
 	
 	void setListView(){
-		ArrayList<ScheduleElement> se = new ArrayList(Arrays.asList(sm.ScheduleList(getDate())));
-		mAdapter = new ScheduleListAdapter(this, se);
+		ArrayList<ScheduleElement> se = new ArrayList(Arrays.asList(sm.ScheduleList(getDate(), toUser)));
+		mAdapter = new ScheduleListAdapter(this, se, fromUser, toUser);
 		scheduleList = (DynamicListView)rootView.findViewById(R.id.listView);
 		scheduleList.setAdapter(mAdapter);
 		setAdapters();
@@ -127,6 +130,8 @@ public class ScheduleFragment extends Fragment implements OnDismissCallback, Del
         bundle.putString("year", String.valueOf(year));
         bundle.putString("month", String.valueOf(month));
         bundle.putString("day", String.valueOf(day));
+        bundle.putString("fromUser", fromUser);
+        bundle.putString("toUser", toUser);
         return bundle;
     }
     
@@ -162,12 +167,13 @@ public class ScheduleFragment extends Fragment implements OnDismissCallback, Del
       bundle.putString("year", String.valueOf(year));
       bundle.putString("month", String.valueOf(month));
       bundle.putString("day", String.valueOf(day));
+      bundle.putString("fromUser", fromUser);
+      bundle.putString("toUser", toUser);
       return bundle;
 	}
 	
 	void jumpToAdd(){
 		Fragment fragment  = new ScheduleDetailFragment();
-        
 		if(fragment != null){
 			fragment.setArguments(getAddInfo());
 			FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
@@ -192,6 +198,7 @@ public class ScheduleFragment extends Fragment implements OnDismissCallback, Del
                 case MotionEvent.ACTION_UP:{
                 	add.setAlpha(0.5f);
                 	jumpToAdd();
+                	//jiazai
                     break;
                 }
                 }
@@ -204,6 +211,8 @@ public class ScheduleFragment extends Fragment implements OnDismissCallback, Del
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		setDate();
+		fromUser = this.getArguments().getString("fromUser");
+		toUser = this.getArguments().getString("toUser");
 		rootView = inflater.inflate(R.layout.fragment_schedule, container,false);
 		sm = new ScheduleManager(getActivity());
 		setAddButton();
@@ -223,6 +232,18 @@ public class ScheduleFragment extends Fragment implements OnDismissCallback, Del
     public void deleteItem(final int position) {
         mAdapter.remove(position);
         mAdapter.notifyDataSetChanged();
+        //jiazai
+        ScheduleElement se = mAdapter.getItem(position);
+        try {
+			if(CalendarFunction.send(se, "del"))
+			{
+				ScheduleManager manager = new ScheduleManager(null);
+				manager.deleteSchedule(se.id);
+			}
+		} catch (Throwable e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
 }

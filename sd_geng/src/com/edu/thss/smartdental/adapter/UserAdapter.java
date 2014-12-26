@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import com.edu.thss.smartdental.db.ScheduleManager;
@@ -32,14 +33,44 @@ public class UserAdapter extends BaseAdapter {
 	private FragmentActivity fa = null;
 	private List<String> userList = null;
 	private Date date = null;
+	private String fromUser;
+	private HashMap<String, String> userName;
+	private HashMap<String, Integer> userPic;
 	
-	public UserAdapter(FragmentActivity f){
+	public UserAdapter(FragmentActivity f, String fU){
 		fa = f;
 		inflater = LayoutInflater.from(fa);
 		userList = new ArrayList<String>();
-		userList.add("dad");
-		userList.add("mom");
-		userList.add("child");
+		fromUser = fU;
+		userName = new HashMap<String, String>();
+		userPic = new HashMap<String, Integer>();
+		if (fU.equals("mom")){
+			userName.put("mom", "Œ“");
+			userName.put("dad", "¿œπ´");
+			userName.put("child", "∂π∂π");
+			userList.add("mom");
+			userList.add("dad");
+			userList.add("child");
+		}
+		else if (fU.equals("child")){
+			userName.put("mom", "¬Ë¬Ë");
+			userName.put("dad", "∞÷∞÷");
+			userName.put("child", "Œ“");
+			userList.add("child");
+			userList.add("mom");
+			userList.add("dad");
+		}
+		else{
+			userName.put("dad", "Œ“");
+			userName.put("mom", "¿œ∆≈");
+			userName.put("child", "∂π∂π");
+			userList.add("dad");
+			userList.add("mom");
+			userList.add("child");
+		}
+		userPic.put("dad", R.drawable.dad);
+		userPic.put("mom", R.drawable.mom);
+		userPic.put("child", R.drawable.child);
 	}
 
 	
@@ -72,18 +103,9 @@ public class UserAdapter extends BaseAdapter {
         TextView username = (TextView)arg1.findViewById(R.id.userName);
         ImageView userpic= (ImageView)arg1.findViewById(R.id.user_pic);
         String name = "";
-        if (u.equals("mom")){
-        	username.setText("¬Ë¬Ë");
-        	userpic.setImageResource(R.drawable.mom);
-        }
-        else if (u.equals("child")){
-        	username.setText("∂π∂π");
-        	userpic.setImageResource(R.drawable.child);
-        }
-        else{
-        	username.setText("∞÷∞÷");
-        	userpic.setImageResource(R.drawable.dad);
-        }
+        username.setText(userName.get(u));
+        userpic.setImageResource(userPic.get(u));
+
       return arg1;
     }
 

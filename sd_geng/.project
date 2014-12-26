@@ -3,6 +3,8 @@
 	<name>SmartDental</name>
 	<comment></comment>
 	<projects>
+		<project>library</project>
+		<project>Library-ListViewAnimations</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

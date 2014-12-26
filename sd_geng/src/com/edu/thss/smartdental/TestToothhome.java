@@ -21,12 +21,12 @@ public class TestToothhome extends FragmentActivity {
         fragmentManager = getSupportFragmentManager();  
         fragmentTransaction = fragmentManager.beginTransaction();  
   
-        CheckInfo fragmentTest1 = new CheckInfo();  
-  
-        fragmentTransaction.replace(R.id.content_frame, fragmentTest1,  
-                "fragmentTest1");  
-  
-        fragmentTransaction.commit();  
+//        CheckInfo fragmentTest1 = new CheckInfo();  
+//  
+//        fragmentTransaction.replace(R.id.content_frame, fragmentTest1,  
+//                "fragmentTest1");  
+//  
+//        fragmentTransaction.commit();  
  
 	}
 

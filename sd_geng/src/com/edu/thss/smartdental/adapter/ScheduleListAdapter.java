@@ -37,12 +37,16 @@ public class ScheduleListAdapter extends ArrayAdapter<ScheduleElement> {
 	private FragmentActivity mContext;
 	private Fragment cur;
 	private FragmentTransaction ft;
+	private String fromUser;
+	private String toUser;
 
 	public ScheduleListAdapter(Fragment f,
-			final ArrayList<ScheduleElement> items) {
+			final ArrayList<ScheduleElement> items, String fU, String tU) {
 		super(items);
 		mContext = f.getActivity();
 		cur = f;
+		fromUser = fU;
+		toUser = tU;
 	}
 	
 	
@@ -76,12 +80,38 @@ public class ScheduleListAdapter extends ArrayAdapter<ScheduleElement> {
         TextView hour = (TextView)item.findViewById(R.id.hour);
         TextView min = (TextView)item.findViewById(R.id.min);
         TextView name = (TextView)item.findViewById(R.id.name);
-        Date d = se.alertTime;
         Calendar c = Calendar.getInstance(); 
+        int hourInt = c.get(Calendar.HOUR_OF_DAY);
+        int minInt = c.get(Calendar.MINUTE);
+        TextView tag = (TextView)item.findViewById(R.id.schedule_tag);
+        String tagStr = "上午";
+        if (hourInt < 6){
+        	tagStr = "凌晨";
+        }
+        else if (hourInt < 12){
+        	tagStr = "上午";
+        }
+        else if (hourInt < 18){
+        	tagStr = "下午";
+        }
+        else{
+        	tagStr = "晚上";
+        }
+        Date d = se.alertTime;
         c.setTime(d);
-        hour.setText(getLen2(Integer.toString(c.get(Calendar.HOUR_OF_DAY))));
-        min.setText(':' + getLen2(Integer.toString(c.get(Calendar.MINUTE))));
+        hour.setText(getLen2(Integer.toString(hourInt)));
+        min.setText(':' + getLen2(Integer.toString(minInt)));
         name.setText(se.name);
+        ImageView fu = (ImageView)item.findViewById(R.id.fromUser);
+        if (fromUser.equals("mom")){
+        	fu.setImageResource(R.drawable.mom);
+        }
+        else if (fromUser.equals("child")){
+        	fu.setImageResource(R.drawable.child);
+        }
+        else{
+        	fu.setImageResource(R.drawable.dad);
+        }
     }
     
     void showInfoDialog(final ScheduleElement se){

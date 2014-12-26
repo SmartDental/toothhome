@@ -418,7 +418,8 @@ int menu one_image 0x7f0a000c
 int menu oneday_appoint 0x7f0a000d
 int menu schedule 0x7f0a000e
 int menu test_toothhome 0x7f0a000f
-int raw smartdental 0x7f040000
+int raw schedule 0x7f040000
+int raw smartdental 0x7f040001
 int string action_settings 0x7f060002
 int string app_name 0x7f060000
 int string drawer_close 0x7f060005

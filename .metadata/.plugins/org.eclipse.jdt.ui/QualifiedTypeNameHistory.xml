@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="com.edu.thss.smartdental.R.id"/>
-<fullyQualifiedTypeName name="com.edu.thss.smartdental.R.drawable"/>
 <fullyQualifiedTypeName name="com.edu.thss.smartdental.adapter.UserAdapter"/>
+<fullyQualifiedTypeName name="java.util.HashMap"/>
+<fullyQualifiedTypeName name="com.edu.thss.smartdental.db.ScheduleManager"/>
+<fullyQualifiedTypeName name="com.edu.thss.smartdental.R.drawable"/>
+<fullyQualifiedTypeName name="java.util.TimeZone"/>
 </qualifiedTypeNameHistroy>
