@@ -5,6 +5,7 @@
     android:versionName="1.0" >
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
 
     <uses-sdk
@@ -70,6 +71,15 @@
         <activity
             android:name=".TestToothhome"
             android:label="我的牙一家" >
+        </activity>
+        <activity
+            android:name="com.edu.thss.smartdental.HelpSlide"
+            android:label="帮助"
+            android:parentActivityName="com.edu.thss.smartdental.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.edu.thss.smartdental.MainActivity"
+                />
         </activity>
         <receiver android:name=".CalendarNotificationReceiver" >
             <intent-filter>

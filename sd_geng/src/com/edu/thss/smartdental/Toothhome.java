@@ -68,43 +68,6 @@ public class Toothhome extends Fragment {
 				args.putString("fromUser", fromUser);
 				args.putString("toUser",toUser);
 				caldroidFragment.setArguments(args);
-//				
-//				final CaldroidListener listener = new CaldroidListener() {
-//
-//				    @Override
-//				    public void onSelectDate(Date date, View view) {
-//				        Calendar cal = Calendar.getInstance();
-//				        cal.setTime(date);
-//				        int year = cal.get(Calendar.YEAR);
-//				        int month = cal.get(Calendar.MONTH);
-//				        int day = cal.get(Calendar.DAY_OF_MONTH);
-//				        Bundle bundle = new Bundle();
-//				        bundle.putString("fromUser", fromUser);
-//				        bundle.putString("toUser", toUser);
-//				        bundle.putString("year", String.valueOf(year));
-//				        bundle.putString("month", String.valueOf(month));
-//				        bundle.putString("day", String.valueOf(day));
-//				        FragmentManager fragmentManager = cur.getActivity().getSupportFragmentManager();
-//				        Fragment fragment  = new ScheduleFragment();
-//						if(fragment != null){
-//							fragment.setArguments(bundle);
-//							//FragmentManager fragmentManager = ta.getSupportFragmentManager();
-//							fragmentManager
-//							.beginTransaction()
-//							.replace(R.id.content_frame,fragment)
-//							.hide(cur)
-//							.addToBackStack(null)
-//							.commit();
-//							
-//						}
-////				        ScheduleElement se = new ScheduleElement();
-////				        jumpToEdit(se);
-//				        
-//				    }
-//
-//				};
-//
-//				caldroidFragment.setCaldroidListener(listener);
 				FragmentTransaction t = getActivity().getSupportFragmentManager().beginTransaction();
 				t.replace(R.id.content_frame, caldroidFragment)
 				.addToBackStack(null)

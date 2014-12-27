@@ -15,9 +15,9 @@ import org.json.JSONException;
 
 public class CalendarFunction
 {
- 	private static String serverIP = "192.168.1.100";
+ 	private static String serverIP = "59.66.137.106";
 	private static int clientPort = 8888;
-	private static final int serverPort = 9888;
+	private static final int serverPort = 8888;
 	private static final int bufferSize = 40960;
 	public static boolean send(ScheduleElement se,String order)
 	{

@@ -7,52 +7,83 @@ import java.security.MessageDigest;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.os.Environment;
+
+import com.edu.thss.smartdental.RoleId;
+
 public class LoginManager {
-	private String username;
-	private String password;
-	private String address;
-	private int port;
-	private String type;
-	private String reply;
+	private static String username;
+	private static String password;
+	private static String address;
+	private static int port;
+	private static String type;
+	private static String reply;
 	
 	public LoginManager(String un, String pw, String add, int p, String t) {
-		this.username = un;
-		this.password = pw;
-		this.address = add;
-		this.port = p;
-		this.type = t;
-		this.reply = null;
+		username = un;
+		password = pw;
+		address = add;
+		port = p;
+		type = t;
+		reply = null;
 	}
 	
 	public String getReply()
 	{
 		return this.reply;
 	}
+	
+	
+	public class loginTh extends Thread
+	{
+		public void run()
+		{
+			try {
+				Socket socket = new Socket(address, port);
+				InputStream in = socket.getInputStream();
+		        OutputStream out = socket.getOutputStream();
+		        out.write(type.getBytes());
+		        JSONObject object = new JSONObject();
+		        try {
+					object.put("username", username);
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		        try {
+					object.put("password", MD5(password.getBytes()));
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		        String sent = object.toString();
+		        out.write(sent.getBytes());
+		        byte[] buffer = new byte[4096]; 
+		        int count = in.read(buffer);
+		        reply = new String(buffer, 0, count);
+		        socket.close();
+			} catch (IOException e) {
+				reply = "netError";
+			}
+			try {
+				File role = new File(Environment.getExternalStorageDirectory(),"role.txt");
+				role.delete();
+				role.createNewFile();
+				FileOutputStream is = new FileOutputStream(role, false);
+				is.write(reply.getBytes(), 0, reply.length());
+				is.close();
+			} catch (FileNotFoundException e) {
+				;
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
 	public Boolean login() throws Throwable {
-		try {
-			Socket socket = new Socket(address, port);
-			InputStream in = socket.getInputStream();
-	        OutputStream out = socket.getOutputStream();
-	        out.write(type.getBytes());
-	        JSONObject object = new JSONObject();
-	        object.put("username", username);
-	        object.put("password", MD5(password.getBytes()));
-	        String sent = object.toString();
-	        out.write(sent.getBytes());
-	        byte[] buffer = new byte[4096]; 
-	        int count = in.read(buffer);
-	        reply = new String(buffer, 0, count);
-	        socket.close();
-		} catch (IOException e) {
-			reply = "netError";
-		}
-		try {
-			File role = new File("role.txt");
-			FileOutputStream is = new FileOutputStream(role);
-			is.write(reply.getBytes(), 0, reply.length());
-		} catch (FileNotFoundException e) {
-			;
-		}
+		Thread t = new loginTh();
+		t.start();
+		t.join();
 		return loginSuccess();
 	}
 	
@@ -77,10 +108,12 @@ public class LoginManager {
 		return s;
 	}
 	
-	private Boolean loginSuccess() {
+	private Boolean loginSuccess() throws Throwable {
 		String[] success = {"dad", "mom", "child"};
+		RoleId re = new RoleId();
+		re.readFile("role.txt");
 		for (int i = 0; i < success.length; i++) {
-			if (this.reply == success[i])
+			if ((re.getRole()).equals(success[i]))
 				return true;
 		}
 		return false;

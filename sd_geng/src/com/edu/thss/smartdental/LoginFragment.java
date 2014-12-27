@@ -17,7 +17,6 @@ import android.widget.TextView;
 
 import com.edu.thss.smartdental.db.LoginManager;
 
-
 public class LoginFragment extends Fragment  {
 	
 	private FragmentManager fm2 = null; 
@@ -27,8 +26,8 @@ public class LoginFragment extends Fragment  {
 	private String role = null; 
 	private TextView warning;
 	private String userstr, passwordstr;
-	
-	private String ServerAdd = "127.0.0.1";
+	private int serverPort = 8888;
+	private String ServerAdd = "59.66.137.106";
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -42,13 +41,12 @@ public class LoginFragment extends Fragment  {
 		password = (EditText)rootView.findViewById(R.id.password);
 		  warning = (TextView)rootView.findViewById(R.id.warning);
 		warning.setVisibility(View.GONE);
-		
-		userstr = user.getText().toString();
-		passwordstr = password.getText().toString();
 		login.setOnClickListener(new OnClickListener(){
 			public void onClick(View v){
 				try {
-					LoginManager lm = new LoginManager(userstr, passwordstr, ServerAdd, 8888, "login");
+					userstr = user.getText().toString();
+					passwordstr = password.getText().toString();
+					LoginManager lm = new LoginManager(userstr, passwordstr, ServerAdd, serverPort, "login");
 					if (lm.login()){
 						role = lm.getReply();
 						changeFragment();
@@ -61,7 +59,7 @@ public class LoginFragment extends Fragment  {
 				} catch (Throwable e) {
 					   	warning.setText("ÍøÂçÁ¬½Ó´íÎó¡£");
 					   	warning.setVisibility(View.VISIBLE);
-					   	role="dad";
+					   	role = "dad";
 					   	changeFragment();
 				}
 			}
@@ -73,7 +71,9 @@ public class LoginFragment extends Fragment  {
 					LoginManager lm = new LoginManager(userstr, passwordstr, ServerAdd, 8888, "signin");
 					if (lm.login())
 					{
-						role = lm.getReply();
+						RoleId ri = new RoleId();
+						role = ri.getRole();
+						
 						changeFragment();
 					}
 				} catch (Throwable e) {
@@ -87,6 +87,8 @@ public class LoginFragment extends Fragment  {
 	
 	private void changeFragment(){
 		FragmentTransaction transaction = fm2.beginTransaction();
+		Client ct = new Client(getActivity());
+		ct.isConnected();
 		Fragment tempfragment = new Toothhome();
 		Bundle bundle = new Bundle();
 		bundle.putString("fromUser", role);

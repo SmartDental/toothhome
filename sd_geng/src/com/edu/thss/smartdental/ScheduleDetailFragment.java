@@ -212,7 +212,9 @@ public class ScheduleDetailFragment extends Fragment {
 	}
 	
 	void addSchedule(ScheduleElement se){
-		sm.addSchedule(se);
+		int newid;
+		newid = sm.addSchedule(se);
+		se.id = newid;
 		//jiazai
 		try {
 			if(CalendarFunction.send(se, "add"))

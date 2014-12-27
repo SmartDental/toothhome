@@ -15,6 +15,7 @@ import com.roomorama.caldroid.CaldroidListener;
 import android.os.Bundle;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
@@ -154,7 +155,9 @@ public class MainActivity extends FragmentActivity implements OnItemClickListene
 			fragment = new LoginFragment();
 			break;
 		case 8:
-			fragment = new SettingFragment();
+			//fragment = new SettingFragment();
+			Intent intent = new Intent(this, HelpSlide.class);
+			startActivity(intent);
 			break;
 		case 9:
 			fragment = new SettingFragment();

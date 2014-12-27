@@ -259,8 +259,33 @@ public class ScheduleManager {
     	return newOne.id;
     }
     
+    public void addAll() throws ParseException
+    {
+    	openDatabase();
+    	Cursor c = db.rawQuery("SELECT * FROM schedule", null);
+    	Calendar calendar = Calendar.getInstance();
+    	Date now = new Date();
+		while(c.moveToNext())
+		{
+	        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			ScheduleElement newOne = new ScheduleElement();
+			newOne.id =  Integer.parseInt(c.getString(c.getColumnIndex("id")));
+			newOne.alertTime =  sdf.parse(c.getString(c.getColumnIndex("alertTime")));
+			newOne.description =  c.getString(c.getColumnIndex("description"));
+			newOne.fromUser =  c.getString(c.getColumnIndex("fromUser"));
+			newOne.name =  c.getString(c.getColumnIndex("name"));
+			newOne.toUser =  c.getString(c.getColumnIndex("toUser"));	
+			if (now.before(newOne.alertTime))
+	    	{
+				calendar.setTime(newOne.alertTime);
+				setReminder(calendar.getTimeInMillis(), newOne.name, newOne.description, newOne.id);}
+			}
+		c.close();
+		
+    	db.close();
+    }
     
-    public int[] deleteAll (){
+    public void deleteAll (){
     	openDatabase();
     	int len = 0;
     	Cursor c = db.rawQuery("SELECT * FROM schedule", null);
@@ -272,16 +297,16 @@ public class ScheduleManager {
 		int[] list = new int[len];
 		
 		int i = 0;
+		int id = 0;
 	  	c = db.rawQuery("SELECT * FROM schedule", null);
 		while(c.moveToNext()){
-			list[i] =  Integer.parseInt(c.getString(c.getColumnIndex("id")));
-			deleteSchedule(list[i]);
+			id =  Integer.parseInt(c.getString(c.getColumnIndex("id")));
+			delReminder(id);
 			i++;
 		}
 		c.close();
 		
     	db.close();
-    	return list;
     }
     
     public int[] get_All_days(int year, int month, String toUser)
