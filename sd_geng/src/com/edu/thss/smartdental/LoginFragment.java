@@ -59,8 +59,8 @@ public class LoginFragment extends Fragment  {
 				} catch (Throwable e) {
 					   	warning.setText("ÍøÂçÁ¬½Ó´íÎó¡£");
 					   	warning.setVisibility(View.VISIBLE);
-					   	role = "dad";
-					   	changeFragment();
+					  // role = "dad";
+					   	//changeFragment();
 				}
 			}
 		});
