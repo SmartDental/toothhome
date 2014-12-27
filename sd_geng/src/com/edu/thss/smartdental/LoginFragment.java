@@ -53,7 +53,12 @@ public class LoginFragment extends Fragment  {
 						role = lm.getReply();
 						changeFragment();
 					}
+					else
+					{
+						changeFragment();
+					}
 				} catch (Throwable e) {
+					changeFragment();
 					;
 				}
 			}
@@ -84,7 +89,7 @@ public class LoginFragment extends Fragment  {
 		bundle.putString("fromUser", role);
 		tempfragment.setArguments(bundle);
 		if(tempfragment != null){
-        	transaction.replace(R.id.loginFragment, tempfragment);
+        	transaction.replace(R.id.content_frame, tempfragment);
         	transaction.commit();
         }
 	}
