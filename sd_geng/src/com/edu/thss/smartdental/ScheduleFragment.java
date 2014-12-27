@@ -96,7 +96,7 @@ public class ScheduleFragment extends Fragment implements OnDismissCallback, Del
 		//animAdapter.setInitialDelayMillis(100);
 		animAdapter.setAbsListView(scheduleList);
 		scheduleList.setAdapter(animAdapter);
-		setAnimEvent(scheduleList, animAdapter);
+		//setAnimEvent(scheduleList, animAdapter);
 	}
 	
 	void setContextualUndoAdapter() {

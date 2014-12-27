@@ -48,7 +48,9 @@ public class LoginFragment extends Fragment  {
 					passwordstr = password.getText().toString();
 					LoginManager lm = new LoginManager(userstr, passwordstr, ServerAdd, serverPort, "login");
 					if (lm.login()){
-						role = lm.getReply();
+						RoleId ri = new RoleId();
+						ri.readFile("role.txt");
+						role = ri.getRole();  
 						changeFragment();
 					}
 					else
@@ -72,6 +74,7 @@ public class LoginFragment extends Fragment  {
 					if (lm.login())
 					{
 						RoleId ri = new RoleId();
+						ri.readFile("role.txt");
 						role = ri.getRole();
 						
 						changeFragment();

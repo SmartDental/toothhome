@@ -43,6 +43,8 @@ public class CalendarFunction
             OutputStream out = socket.getOutputStream();
             str = "change";  
             out.write(str.getBytes());
+            byte[] temp = new byte[1024];
+            in.read(temp);
             String data = null;
 			try {
 				data = SeAndJsonExchanging.SEToJson(order, se);
