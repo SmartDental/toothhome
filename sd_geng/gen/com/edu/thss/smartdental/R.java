@@ -161,8 +161,12 @@ public final class R {
         public static final int tooth_bg_5=0x7f020048;
     }
     public static final class id {
+        public static final int LinearLayout01=0x7f0b00e0;
+        public static final int LinearLayout02=0x7f0b00e1;
+        public static final int LinearLayout03=0x7f0b00e2;
+        public static final int LinearLayout_account=0x7f0b00e3;
         public static final int ScrollView=0x7f0b008a;
-        public static final int action_settings=0x7f0b00ee;
+        public static final int action_settings=0x7f0b00fa;
         public static final int activity_expandablelistitem_card_content=0x7f0b00dc;
         public static final int activity_expandablelistitem_card_title=0x7f0b00db;
         public static final int app_chartview=0x7f0b00b0;
@@ -254,8 +258,8 @@ public final class R {
         public static final int emr_tab_mark=0x7f0b00a3;
         public static final int emr_tab_unread=0x7f0b00a1;
         public static final int emr_table=0x7f0b0067;
-        public static final int fromUser=0x7f0b00e6;
-        public static final int hour=0x7f0b00e2;
+        public static final int fromUser=0x7f0b00f2;
+        public static final int hour=0x7f0b00ee;
         public static final int image_grid_item_image=0x7f0b00d2;
         public static final int image_grid_item_title=0x7f0b00d3;
         public static final int image_leftRotate=0x7f0b006a;
@@ -354,27 +358,33 @@ public final class R {
         public static final int infoworkphone=0x7f0b0052;
         public static final int infoworkphone_c=0x7f0b0054;
         public static final int infoworkphone_t=0x7f0b0053;
+        public static final int lblAccount=0x7f0b00e4;
+        public static final int lblPassword=0x7f0b00e6;
         public static final int left_drawer=0x7f0b0015;
         public static final int listView=0x7f0b00b2;
-        public static final int member_schedule=0x7f0b00df;
+        public static final int login=0x7f0b00e9;
+        public static final int loginFragment=0x7f0b00df;
+        public static final int member_schedule=0x7f0b00eb;
         public static final int message=0x7f0b0019;
-        public static final int min=0x7f0b00e3;
+        public static final int min=0x7f0b00ef;
         public static final int months_infinite_pager=0x7f0b007c;
         public static final int name=0x7f0b0018;
         public static final int name_detail=0x7f0b00c0;
         public static final int name_pic=0x7f0b00b8;
         public static final int one_image_op=0x7f0b0069;
         public static final int one_image_view=0x7f0b0068;
-        public static final int schedule=0x7f0b00e0;
+        public static final int password=0x7f0b00e7;
+        public static final int schedule=0x7f0b00ec;
         public static final int schedule_add=0x7f0b00b3;
-        public static final int schedule_info=0x7f0b00e4;
-        public static final int schedule_tag=0x7f0b00e1;
+        public static final int schedule_info=0x7f0b00f0;
+        public static final int schedule_tag=0x7f0b00ed;
+        public static final int signin=0x7f0b00ea;
         public static final int tableLayout1=0x7f0b00b4;
         public static final int tableRow4=0x7f0b00b5;
         public static final int test_activity=0x7f0b006d;
         public static final int test_btn=0x7f0b0016;
         public static final int test_button=0x7f0b0017;
-        public static final int text1=0x7f0b00e5;
+        public static final int text1=0x7f0b00f1;
         public static final int textView0=0x7f0b00b7;
         public static final int textView1=0x7f0b00b9;
         public static final int textView2=0x7f0b00bc;
@@ -382,11 +392,11 @@ public final class R {
         public static final int time_btn=0x7f0b00be;
         public static final int time_pic=0x7f0b00bb;
         public static final int time_picker=0x7f0b00bf;
-        public static final int tooth_child_title=0x7f0b00e7;
-        public static final int tooth_father_arrow=0x7f0b00e9;
-        public static final int tooth_father_title=0x7f0b00e8;
-        public static final int tooth_permanentview=0x7f0b00ea;
-        public static final int tooth_primaryview=0x7f0b00eb;
+        public static final int tooth_child_title=0x7f0b00f3;
+        public static final int tooth_father_arrow=0x7f0b00f5;
+        public static final int tooth_father_title=0x7f0b00f4;
+        public static final int tooth_permanentview=0x7f0b00f6;
+        public static final int tooth_primaryview=0x7f0b00f7;
         public static final int tooth_tab=0x7f0b00c5;
         public static final int tooth_tab_2d=0x7f0b00c8;
         public static final int tooth_tab_permanent=0x7f0b00c6;
@@ -397,8 +407,10 @@ public final class R {
         public static final int undo_row_texttv=0x7f0b00dd;
         public static final int undo_row_undobutton=0x7f0b00de;
         public static final int userList=0x7f0b00d1;
-        public static final int userName=0x7f0b00ed;
-        public static final int user_pic=0x7f0b00ec;
+        public static final int userName=0x7f0b00f9;
+        public static final int user_pic=0x7f0b00f8;
+        public static final int username=0x7f0b00e5;
+        public static final int warning=0x7f0b00e8;
         public static final int weekday_gridview=0x7f0b007b;
     }
     public static final class layout {
@@ -451,14 +463,15 @@ public final class R {
         public static final int image_list_item=0x7f03002e;
         public static final int item_expandablelistitem_card=0x7f03002f;
         public static final int item_undo_row=0x7f030030;
-        public static final int member_schedule=0x7f030031;
-        public static final int schedule_item=0x7f030032;
-        public static final int tooth_2d=0x7f030033;
-        public static final int tooth_list_child_item=0x7f030034;
-        public static final int tooth_list_father_item=0x7f030035;
-        public static final int tooth_permanent=0x7f030036;
-        public static final int tooth_primary=0x7f030037;
-        public static final int user_cell=0x7f030038;
+        public static final int loginfragment=0x7f030031;
+        public static final int member_schedule=0x7f030032;
+        public static final int schedule_item=0x7f030033;
+        public static final int tooth_2d=0x7f030034;
+        public static final int tooth_list_child_item=0x7f030035;
+        public static final int tooth_list_father_item=0x7f030036;
+        public static final int tooth_permanent=0x7f030037;
+        public static final int tooth_primary=0x7f030038;
+        public static final int user_cell=0x7f030039;
     }
     public static final class menu {
         public static final int case_history=0x7f0a0000;

@@ -1,0 +1,137 @@
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/loginFragment"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.edu.thss.smartdental.LoginActivity" >
+    
+  
+ <LinearLayout 
+     android:id="@+id/LinearLayout01"
+     android:orientation="vertical"
+  	 android:layout_width="fill_parent"
+  	 android:layout_weight="0.9"
+   	 android:layout_height="fill_parent">
+  </LinearLayout>
+ <LinearLayout android:layout_width="fill_parent"
+  android:id="@+id/LinearLayout02"
+  android:layout_weight="0.1"
+  android:orientation="vertical"
+  android:layout_height="fill_parent">
+    <LinearLayout 
+        android:id="@+id/LinearLayout03" 
+        android:layout_width="wrap_content" 
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+    </LinearLayout>
+<LinearLayout
+    android:layout_marginLeft="10px"
+    android:layout_marginRight="10px"
+    android:gravity="center"
+    android:layout_width="fill_parent"
+    android:id="@+id/LinearLayout_account"
+    android:orientation="horizontal"
+    android:layout_height="wrap_content">
+  
+      <TextView android:textSize="8pt" android:id="@+id/lblAccount"
+       android:text="用户："
+       android:layout_weight="3"
+       android:layout_width="fill_parent"
+       android:layout_height="wrap_content"></TextView>
+      
+      <EditText
+      android:id="@+id/username"
+      android:layout_weight="1"
+       android:layout_width="fill_parent"
+      android:text=""
+      android:layout_height="wrap_content">
+          
+      </EditText>
+    
+    </LinearLayout>
+ 
+<LinearLayout
+    android:layout_marginLeft="10px"
+    android:layout_marginRight="10px"
+    android:gravity="center"
+    android:layout_width="fill_parent"
+    android:orientation="horizontal"
+    android:layout_height="wrap_content">
+  
+      <TextView android:textSize="8pt" android:id="@+id/lblPassword"
+       android:text="密码："
+       android:layout_weight="3"
+       android:layout_width="fill_parent"
+       android:layout_height="wrap_content"></TextView>
+    
+      <EditText
+      android:id="@+id/password"
+      android:layout_weight="1"
+       android:layout_width="fill_parent"
+       android:password="true"
+      android:text="" 
+      android:layout_height="wrap_content">
+          
+      </EditText>
+    
+    </LinearLayout>
+  
+    
+    <LinearLayout
+    android:layout_marginLeft="10px"
+    android:layout_marginRight="10px"
+    android:gravity="center"
+    android:layout_width="fill_parent"
+    android:orientation="horizontal"
+    android:layout_height="wrap_content">
+      <TextView android:textSize="12pt" 
+       android:id="@+id/warning"
+       android:visibility="gone"
+       android:text="用户名或密码输入错误"
+       android:layout_width="fill_parent"
+       android:layout_height="wrap_content"></TextView>
+    </LinearLayout>
+    
+    
+    
+    
+    
+    <LinearLayout
+    android:layout_marginLeft="10px"
+    android:layout_marginRight="10px"
+    android:gravity="center"
+    android:layout_width="fill_parent"
+    android:orientation="horizontal"
+    android:layout_height="wrap_content">
+    
+
+     
+   <Button android:text="登录"
+   android:textSize="9pt"
+   android:id="@+id/login" 
+   android:layout_marginRight="30dp"
+   android:paddingLeft="20dp"
+   android:paddingRight="20dp"
+   android:layout_width="wrap_content"
+   android:layout_height="wrap_content"></Button>
+
+    
+    <Button android:text="注册"
+   android:textSize="9pt"
+   android:id="@+id/signin" 
+   android:layout_marginLeft="30dp"
+   android:paddingLeft="20dp"
+   android:paddingRight="20dp" 
+   android:layout_width="wrap_content"
+   android:layout_height="wrap_content"></Button>
+ 
+    </LinearLayout>
+</LinearLayout>
+</LinearLayout>

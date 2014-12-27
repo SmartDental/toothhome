@@ -18,6 +18,7 @@ import com.roomorama.caldroid.CaldroidListener;
 public class CalendarFragment extends CaldroidFragment {
 	private String fromUser;
 	private String toUser;
+	private CaldroidGridAdapter cga;
 	
 	void setCalendarListener(){
 		final Fragment cur = this;
@@ -56,7 +57,8 @@ public class CalendarFragment extends CaldroidFragment {
 		fromUser = this.getArguments().getString("fromUser");
 		toUser = this.getArguments().getString("toUser");
 		setCalendarListener();
-		return super.onCreateView(inflater, container, savedInstanceState);
+		View temp = super.onCreateView(inflater, container, savedInstanceState);
+		return temp;
 	}
 	
 	@Override

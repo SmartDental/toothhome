@@ -151,17 +151,7 @@ public class MainActivity extends FragmentActivity implements OnItemClickListene
 			fragment = new DataFragment();
 			break;
 		case 7:
-			try {
-				if(Client.isConnected())
-				{
-					fragment = new Toothhome();
-					Bundle bundle = new Bundle();
-					bundle.putString("fromUser", user);
-					fragment.setArguments(bundle);
-				}
-			} catch (Throwable e) {
-				e.printStackTrace();
-			}
+			fragment = new LoginFragment();
 			break;
 		case 8:
 			fragment = new SettingFragment();
