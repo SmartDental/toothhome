@@ -9,7 +9,7 @@
    	    <item>课程</item>
    	    <item>数据分析</item>
    	    <item>我的牙一家</item>
-		<item>新建牙一家</item>
+		<item>帮助</item>
    	    <item>设置</item>
    	</string-array>
    	<string-array name="nav_drawer_icons">

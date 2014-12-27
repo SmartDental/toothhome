@@ -106,6 +106,7 @@
     <LinearLayout
     android:layout_marginLeft="10px"
     android:layout_marginRight="10px"
+    android:layout_marginTop="20dp"
     android:gravity="center"
     android:layout_width="fill_parent"
     android:orientation="horizontal"
@@ -114,23 +115,27 @@
 
      
    <Button android:text="登录"
+   android:textColor="#ffffff"    
    android:textSize="9pt"
    android:id="@+id/login" 
    android:layout_marginRight="30dp"
    android:paddingLeft="20dp"
    android:paddingRight="20dp"
    android:layout_width="wrap_content"
-   android:layout_height="wrap_content"></Button>
+   android:layout_height="wrap_content"
+   android:background="@drawable/btn_style"></Button>
 
     
     <Button android:text="注册"
+   android:textColor="#ffffff" 
    android:textSize="9pt"
    android:id="@+id/signin" 
    android:layout_marginLeft="30dp"
    android:paddingLeft="20dp"
    android:paddingRight="20dp" 
    android:layout_width="wrap_content"
-   android:layout_height="wrap_content"></Button>
+   android:layout_height="wrap_content"
+   android:background="@drawable/btn_style"></Button>
  
     </LinearLayout>
 </LinearLayout>
