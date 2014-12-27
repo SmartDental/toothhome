@@ -117,7 +117,7 @@ public class ScheduleManager {
 		else{
 			counter = Integer.parseInt(tmp);
 		}
-		counter ++;
+		counter +=10;
 		writeToFile("counter.txt", String.valueOf(counter));
 		return counter;
 	}
@@ -223,7 +223,7 @@ public class ScheduleManager {
 	}
 	
 	
-    public void addSchedule(ScheduleElement newOne){
+    public int addSchedule(ScheduleElement newOne){
     	openDatabase();
     	
         DateFormat   df   =   new   SimpleDateFormat( "yyyy-MM-dd");
@@ -256,10 +256,11 @@ public class ScheduleManager {
     	if (now.before(newOne.alertTime))
     	{calendar.setTime(newOne.alertTime);
     	setReminder(calendar.getTimeInMillis(), newOne.name, newOne.description, newOne.id);}
-    	
+    	return newOne.id;
     }
     
-    public int[] get_All_id (){
+    
+    public int[] deleteAll (){
     	openDatabase();
     	int len = 0;
     	Cursor c = db.rawQuery("SELECT * FROM schedule", null);
@@ -273,7 +274,9 @@ public class ScheduleManager {
 		int i = 0;
 	  	c = db.rawQuery("SELECT * FROM schedule", null);
 		while(c.moveToNext()){
-			list[i++] =  Integer.parseInt(c.getString(c.getColumnIndex("id")));
+			list[i] =  Integer.parseInt(c.getString(c.getColumnIndex("id")));
+			deleteSchedule(list[i]);
+			i++;
 		}
 		c.close();
 		

@@ -7,8 +7,11 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.text.ParseException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import org.json.JSONException;
 
@@ -19,6 +22,11 @@ public class Client
 	private static int clientPort = 8888;
 	private static final int serverPort = 9888;
 	private static final int bufferSize = 40960;
+	private static Context context = null;
+	public Client(Context context)
+	{
+		this.context = context;
+	}
     public static boolean isConnected()
     {
         	 Thread t = new connecter();
@@ -39,9 +47,11 @@ public class Client
         public void run()
         {
             try{
+            	ScheduleManager sm = new ScheduleManager(context);
                 Socket socket = new Socket(serverIP, serverPort);
                 InputStream in = socket.getInputStream();
                 OutputStream out = socket.getOutputStream();
+                sm.deleteAll();
                 String str = "first";
                 out.write(str.getBytes());
                 String path = DATABASE_PATH + "/" + DATABASE_FILENAME;
@@ -68,7 +78,12 @@ public class Client
                 }
 
                 socket.close();
-
+                try {
+					sm.addAll();
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
                 Thread t = new listener();
                 t.start();
                 //jump to fragment  

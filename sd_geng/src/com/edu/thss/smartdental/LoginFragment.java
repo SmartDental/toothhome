@@ -40,7 +40,7 @@ public class LoginFragment extends Fragment  {
 		signin = (Button)rootView.findViewById(R.id.signin);
 		user = (EditText)rootView.findViewById(R.id.username);
 		password = (EditText)rootView.findViewById(R.id.password);
-		warning = (TextView)rootView.findViewById(R.id.warning);
+		  warning = (TextView)rootView.findViewById(R.id.warning);
 		warning.setVisibility(View.GONE);
 		
 		userstr = user.getText().toString();
@@ -55,11 +55,14 @@ public class LoginFragment extends Fragment  {
 					}
 					else
 					{
-						changeFragment();
+						warning.setText("用户名或密码错误。");
+	                    warning.setVisibility(View.VISIBLE);
 					}
 				} catch (Throwable e) {
-					changeFragment();
-					;
+					   	warning.setText("网络连接错误。");
+					   	warning.setVisibility(View.VISIBLE);
+					   	role="dad";
+					   	changeFragment();
 				}
 			}
 		});
