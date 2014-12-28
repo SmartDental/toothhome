@@ -301,7 +301,7 @@ public class ScheduleManager {
 	  	c = db.rawQuery("SELECT * FROM schedule", null);
 		while(c.moveToNext()){
 			id =  Integer.parseInt(c.getString(c.getColumnIndex("id")));
-			delReminder(id);
+			deleteSchedule(id);
 			i++;
 		}
 		c.close();

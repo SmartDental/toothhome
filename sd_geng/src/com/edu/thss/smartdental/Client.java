@@ -119,28 +119,29 @@ public class Client
 	                    newOne = SeAndJsonExchanging.JsonToSE(data);
 	                    manager.addSchedule(newOne);
 	                    //添加操作
-	                    
+	                    break;
 	                case "mod":
 	                    count = in.read(buffer);
 	                    data = new String(buffer, 0, count);
 	                    newOne = SeAndJsonExchanging.JsonToSE(data);
 	                    manager.editSchedule(newOne);
 	                    //修改操作
+	                    break;
 	                case "del":
 	                    count = in.read(buffer);
 	                    data = new String(buffer, 0, count);
 	                    newOne = SeAndJsonExchanging.JsonToSE(data);
 	                    manager.deleteSchedule(newOne.id);
 	                    //删除操作
+	                    break;
+	                 default:
+	                	 break;
 	                }
 	            }
 	        }
-	        catch(IOException e){
+	        catch(Exception e){
 	            System.out.println("IOException: " + e.getMessage());
-	        } catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+	        } 
 	    }
 	}
 }
