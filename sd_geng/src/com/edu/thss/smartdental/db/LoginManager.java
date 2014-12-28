@@ -63,7 +63,7 @@ public class LoginManager {
 		        reply = new String(buffer, 0, count);
 		        socket.close();
 			} catch (IOException e) {
-				reply = "netError";
+				reply = "netError 1";
 			}
 			try {
 				File role = new File(Environment.getExternalStorageDirectory(),"role.txt");
@@ -80,7 +80,7 @@ public class LoginManager {
 			}
 		}
 	}
-	public Boolean login() throws Throwable {
+	public int login() throws Throwable {
 		Thread t = new loginTh();
 		t.start();
 		t.join();
@@ -108,14 +108,16 @@ public class LoginManager {
 		return s;
 	}
 	
-	private Boolean loginSuccess() throws Throwable {
+	private int loginSuccess() throws Throwable {
 		String[] success = {"dad", "mom", "child"};
 		RoleId re = new RoleId();
 		re.readFile("role.txt");
 		for (int i = 0; i < success.length; i++) {
 			if ((re.getRole()).equals(success[i]))
-				return true;
+				return 1;
+			if(re.getRole().equals("netError"))
+				return -1;
 		}
-		return false;
+		return 0;
 	}
 }

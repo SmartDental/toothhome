@@ -58,6 +58,7 @@ public class Client
                 File localfile = new File(path);
                 try
                 {
+                	localfile.delete();
                     FileOutputStream fos = new FileOutputStream(localfile);
                     byte[] text = new byte[4096];
                     int bytenum;

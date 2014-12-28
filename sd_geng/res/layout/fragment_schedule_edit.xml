@@ -182,7 +182,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp" >
 
         <android.widget.Button
             android:id="@+id/edit_cancel"
@@ -190,6 +191,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="15sp"
             android:layout_toLeftOf="@+id/edit_submit"
+			android:background="@drawable/btn_style"
             android:text="取消" />
 
         <android.widget.Button
@@ -198,6 +200,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_margin="15sp"
+			android:background="@drawable/btn_style"
             android:text="提交" />
     </RelativeLayout>
 

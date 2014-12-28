@@ -91,11 +91,12 @@
     android:layout_width="fill_parent"
     android:orientation="horizontal"
     android:layout_height="wrap_content">
-      <TextView android:textSize="12pt" 
+      <TextView android:textSize="8pt" 
+	   android:textColor="#FF0000"
        android:id="@+id/warning"
        android:visibility="gone"
        android:text="用户名或密码输入错误"
-       android:layout_width="fill_parent"
+       android:layout_width="wrap_content"
        android:layout_height="wrap_content"></TextView>
     </LinearLayout>
     
@@ -118,21 +119,8 @@
    android:textColor="#ffffff"    
    android:textSize="9pt"
    android:id="@+id/login" 
-   android:layout_marginRight="30dp"
    android:paddingLeft="20dp"
    android:paddingRight="20dp"
-   android:layout_width="wrap_content"
-   android:layout_height="wrap_content"
-   android:background="@drawable/btn_style"></Button>
-
-    
-    <Button android:text="注册"
-   android:textColor="#ffffff" 
-   android:textSize="9pt"
-   android:id="@+id/signin" 
-   android:layout_marginLeft="30dp"
-   android:paddingLeft="20dp"
-   android:paddingRight="20dp" 
    android:layout_width="wrap_content"
    android:layout_height="wrap_content"
    android:background="@drawable/btn_style"></Button>

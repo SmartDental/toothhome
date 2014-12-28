@@ -36,7 +36,7 @@ public class LoginFragment extends Fragment  {
 		fm2 = getFragmentManager();
 		//changeFragment(0);
 		login = (Button)rootView.findViewById(R.id.login);
-		signin = (Button)rootView.findViewById(R.id.signin);
+		//signin = (Button)rootView.findViewById(R.id.signin);
 		user = (EditText)rootView.findViewById(R.id.username);
 		password = (EditText)rootView.findViewById(R.id.password);
 		  warning = (TextView)rootView.findViewById(R.id.warning);
@@ -47,19 +47,25 @@ public class LoginFragment extends Fragment  {
 					userstr = user.getText().toString();
 					passwordstr = password.getText().toString();
 					LoginManager lm = new LoginManager(userstr, passwordstr, ServerAdd, serverPort, "login");
-					if (lm.login()){
+					int ls = lm.login();
+					if (ls == 1){
 						RoleId ri = new RoleId();
 						ri.readFile("role.txt");
 						role = ri.getRole();  
 						changeFragment();
 					}
-					else
+					else if(ls == 0)
 					{
-						warning.setText("用户名或密码错误。");
+						warning.setText("用户名或密码错误");
 	                    warning.setVisibility(View.VISIBLE);
 					}
+					else
+					{
+						warning.setText("网络连接错误");
+					   	warning.setVisibility(View.VISIBLE);
+					}
 				} catch (Throwable e) {
-					   	warning.setText("网络连接错误。");
+					   	warning.setText("网络连接错误");
 					   	warning.setVisibility(View.VISIBLE);
 					  // role = "dad";
 					   	//changeFragment();
@@ -67,24 +73,24 @@ public class LoginFragment extends Fragment  {
 			}
 		});
 		
-		signin.setOnClickListener(new OnClickListener(){
-			public void onClick(View v){
-				try {
-					LoginManager lm = new LoginManager(userstr, passwordstr, ServerAdd, 8888, "signin");
-					if (lm.login())
-					{
-						RoleId ri = new RoleId();
-						ri.readFile("role.txt");
-						role = ri.getRole();
-						
-						changeFragment();
-					}
-				} catch (Throwable e) {
-					;
-				}
-				
-			}
-		});
+//		signin.setOnClickListener(new OnClickListener(){
+//			public void onClick(View v){
+//				try {
+//					LoginManager lm = new LoginManager(userstr, passwordstr, ServerAdd, 8888, "signin");
+//					if (lm.login())
+//					{
+//						RoleId ri = new RoleId();
+//						ri.readFile("role.txt");
+//						role = ri.getRole();
+//						
+//						changeFragment();
+//					}
+//				} catch (Throwable e) {
+//					;
+//				}
+//				
+//			}
+//		});
 		return rootView;
 	}
 	
