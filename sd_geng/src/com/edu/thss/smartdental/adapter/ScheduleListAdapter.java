@@ -81,6 +81,7 @@ public class ScheduleListAdapter extends ArrayAdapter<ScheduleElement> {
         TextView min = (TextView)item.findViewById(R.id.min);
         TextView name = (TextView)item.findViewById(R.id.name);
         Calendar c = Calendar.getInstance(); 
+        c.setTime(se.alertTime);
         int hourInt = c.get(Calendar.HOUR_OF_DAY);
         int minInt = c.get(Calendar.MINUTE);
         TextView tag = (TextView)item.findViewById(R.id.schedule_tag);
@@ -103,6 +104,7 @@ public class ScheduleListAdapter extends ArrayAdapter<ScheduleElement> {
         min.setText(':' + getLen2(Integer.toString(minInt)));
         name.setText(se.name);
         ImageView fu = (ImageView)item.findViewById(R.id.fromUser);
+        String fromUser = se.fromUser;
         if (fromUser.equals("mom")){
         	fu.setImageResource(R.drawable.mom);
         }

@@ -41,9 +41,12 @@ public class LoginFragment extends Fragment  {
 		password = (EditText)rootView.findViewById(R.id.password);
 		  warning = (TextView)rootView.findViewById(R.id.warning);
 		warning.setVisibility(View.GONE);
+		warning.setText("登陆需要数秒时间，耐心等待，亲~");
+	    warning.setVisibility(View.VISIBLE);
 		login.setOnClickListener(new OnClickListener(){
 			public void onClick(View v){
 				try {
+				    v.postInvalidate();
 					userstr = user.getText().toString();
 					passwordstr = password.getText().toString();
 					LoginManager lm = new LoginManager(userstr, passwordstr, ServerAdd, serverPort, "login");

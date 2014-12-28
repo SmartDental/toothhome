@@ -287,22 +287,11 @@ public class ScheduleManager {
     
     public void deleteAll (){
     	openDatabase();
-    	int len = 0;
     	Cursor c = db.rawQuery("SELECT * FROM schedule", null);
-		while(c.moveToNext()){
-			len++;
-		}
-		c.close();
-		
-		int[] list = new int[len];
-		
-		int i = 0;
 		int id = 0;
-	  	c = db.rawQuery("SELECT * FROM schedule", null);
 		while(c.moveToNext()){
 			id =  Integer.parseInt(c.getString(c.getColumnIndex("id")));
 			deleteSchedule(id);
-			i++;
 		}
 		c.close();
 		

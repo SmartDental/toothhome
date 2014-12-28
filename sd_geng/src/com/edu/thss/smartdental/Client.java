@@ -59,7 +59,7 @@ public class Client
                 Socket socket = new Socket(serverIP, serverPort);
                 InputStream in = socket.getInputStream();
                 OutputStream out = socket.getOutputStream();
-     //           sm.deleteAll();
+                sm.deleteAll();
                 byte[] temp = new byte[1024];
                 String str = "first";
                 out.write(str.getBytes());
@@ -89,12 +89,12 @@ public class Client
                 }
 
                 socket.close();
-//                try {
-//					sm.addAll();
-//				} catch (ParseException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
+                try {
+					sm.addAll();
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
                 Thread t = new listener();
                 t.start();
                 //jump to fragment  
