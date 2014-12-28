@@ -13,6 +13,8 @@ import java.util.regex.Pattern;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Environment;
+
 import org.json.JSONException;
 
 //加到main activity的case toothhome中
@@ -23,14 +25,20 @@ public class Client
 	private static final int serverPort = 8888;
 	private static final int bufferSize = 40960;
 	private static Context context = null;
-	public Client(Context context)
+	public Client(Context context1)
 	{
-		this.context = context;
+		context = context1;
 	}
-    public static boolean isConnected()
+    public boolean isConnected()
     {
         	 Thread t = new connecter();
              t.start();
+             try {
+				t.join();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
              return true;
             //jump to fragment  
     }
@@ -43,7 +51,7 @@ public class Client
     	private final String DATABASE_PATH = android.os.Environment
     			.getExternalStorageDirectory().getAbsolutePath()
     			+ "/SmartDental";
-    			private final String DATABASE_FILENAME = "database";
+    			private final String DATABASE_FILENAME = "schedule.db";
         public void run()
         {
             try{
@@ -51,11 +59,13 @@ public class Client
                 Socket socket = new Socket(serverIP, serverPort);
                 InputStream in = socket.getInputStream();
                 OutputStream out = socket.getOutputStream();
-                sm.deleteAll();
+     //           sm.deleteAll();
+                byte[] temp = new byte[1024];
                 String str = "first";
                 out.write(str.getBytes());
-                String path = DATABASE_PATH + "/" + DATABASE_FILENAME;
-                File localfile = new File(path);
+                in.read(temp);
+                //String path = DATABASE_PATH + "/" + DATABASE_FILENAME;
+                File localfile = new File(Environment.getExternalStorageDirectory().toString(),DATABASE_FILENAME);
                 try
                 {
                 	localfile.delete();
@@ -79,12 +89,12 @@ public class Client
                 }
 
                 socket.close();
-                try {
-					sm.addAll();
-				} catch (ParseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+//                try {
+//					sm.addAll();
+//				} catch (ParseException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
                 Thread t = new listener();
                 t.start();
                 //jump to fragment  
