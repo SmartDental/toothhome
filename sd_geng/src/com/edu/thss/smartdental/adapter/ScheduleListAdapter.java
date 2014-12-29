@@ -98,6 +98,7 @@ public class ScheduleListAdapter extends ArrayAdapter<ScheduleElement> {
         else{
         	tagStr = "мМио";
         }
+        tag.setText(tagStr);
         Date d = se.alertTime;
         c.setTime(d);
         hour.setText(getLen2(Integer.toString(hourInt)));

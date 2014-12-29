@@ -16,6 +16,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Environment;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
 //加到main activity的case toothhome中
 public class Client 
@@ -48,6 +49,7 @@ public class Client
     	private static int clientPort = 8888;
     	private static final int serverPort = 8888;
     	private static final int bufferSize = 40960;
+
     	private final String DATABASE_PATH = android.os.Environment
     			.getExternalStorageDirectory().getAbsolutePath()
     			+ "/SmartDental";
@@ -64,7 +66,6 @@ public class Client
                 String str = "first";
                 out.write(str.getBytes());
                 in.read(temp);
-                //String path = DATABASE_PATH + "/" + DATABASE_FILENAME;
                 File localfile = new File(Environment.getExternalStorageDirectory().toString(),DATABASE_FILENAME);
                 try
                 {
@@ -104,12 +105,24 @@ public class Client
             }     	
         }
     }
+    
 	static class listener extends Thread
 	{
+		public static String JsonToOP(String json) throws JSONException{
+			JSONObject object = new JSONObject(json);
+			String oper = (String)object.getString("operation");
+			return oper;
+		}
+		public static int JsonToID(String json) throws JSONException{
+			JSONObject object = new JSONObject(json);
+			int id = Integer.parseInt((String)object.getString("id"));
+			return id;
+		}
 	    public void run()
 	    {
 	        try{
-	            Socket socket = new Socket(serverIP, serverPort);
+	            @SuppressWarnings("resource")
+				Socket socket = new Socket(serverIP, serverPort);
 	            InputStream in = socket.getInputStream();
 	            OutputStream out = socket.getOutputStream();
 	            String str = "listen";
@@ -118,29 +131,28 @@ public class Client
 	            while(true)
 	            {
 	                int count = in.read(buffer);
-	                String order = new String(buffer, 0, count);
-	                String data;
+	                String data = new String(buffer, 0, count);
+	                String order;
 	                ScheduleElement newOne;
-	                ScheduleManager manager = new ScheduleManager(null);
+	                order = JsonToOP(data);
+	                ScheduleManager manager = new ScheduleManager(context);
 					switch(order)
 	                {
 	                case "add":
-	                    count = in.read(buffer);
-	                    data = new String(buffer, 0, count);
+	                    int smid = manager.getCounter();
 	                    newOne = SeAndJsonExchanging.JsonToSE(data);
-	                    manager.addSchedule(newOne);
+	                    if(smid != JsonToID(data))
+	                    {
+	                    	manager.addSchedule(newOne);
+	                    }
 	                    //添加操作
 	                    break;
 	                case "mod":
-	                    count = in.read(buffer);
-	                    data = new String(buffer, 0, count);
 	                    newOne = SeAndJsonExchanging.JsonToSE(data);
 	                    manager.editSchedule(newOne);
 	                    //修改操作
 	                    break;
 	                case "del":
-	                    count = in.read(buffer);
-	                    data = new String(buffer, 0, count);
 	                    newOne = SeAndJsonExchanging.JsonToSE(data);
 	                    manager.deleteSchedule(newOne.id);
 	                    //删除操作

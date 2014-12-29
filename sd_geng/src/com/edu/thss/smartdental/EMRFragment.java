@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import com.edu.thss.smartdental.adapter.EMRListAdapter;
 import com.edu.thss.smartdental.model.EMRElement;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;

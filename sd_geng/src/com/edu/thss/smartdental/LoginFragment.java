@@ -34,9 +34,7 @@ public class LoginFragment extends Fragment  {
 			Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.loginfragment, container,false);
 		fm2 = getFragmentManager();
-		//changeFragment(0);
 		login = (Button)rootView.findViewById(R.id.login);
-		//signin = (Button)rootView.findViewById(R.id.signin);
 		user = (EditText)rootView.findViewById(R.id.username);
 		password = (EditText)rootView.findViewById(R.id.password);
 		  warning = (TextView)rootView.findViewById(R.id.warning);
@@ -54,6 +52,7 @@ public class LoginFragment extends Fragment  {
 					if (ls == 1){
 						RoleId ri = new RoleId();
 						ri.readFile("role.txt");
+						ri.initCounter(ri.getId());
 						role = ri.getRole();  
 						changeFragment();
 					}
@@ -70,30 +69,9 @@ public class LoginFragment extends Fragment  {
 				} catch (Throwable e) {
 					   	warning.setText("ÍøÂçÁ¬½Ó´íÎó");
 					   	warning.setVisibility(View.VISIBLE);
-					  // role = "dad";
-					   	//changeFragment();
 				}
 			}
 		});
-		
-//		signin.setOnClickListener(new OnClickListener(){
-//			public void onClick(View v){
-//				try {
-//					LoginManager lm = new LoginManager(userstr, passwordstr, ServerAdd, 8888, "signin");
-//					if (lm.login())
-//					{
-//						RoleId ri = new RoleId();
-//						ri.readFile("role.txt");
-//						role = ri.getRole();
-//						
-//						changeFragment();
-//					}
-//				} catch (Throwable e) {
-//					;
-//				}
-//				
-//			}
-//		});
 		return rootView;
 	}
 	

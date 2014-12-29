@@ -39,6 +39,7 @@ import android.widget.TimePicker;
 public class ScheduleDetailFragment extends Fragment {
 	public Fragment cur = this;
 	private View myView = null;
+	private int back = 0;
 	private int year = 0;
 	private int month = 0;
 	private int day = 0;
@@ -143,8 +144,6 @@ public class ScheduleDetailFragment extends Fragment {
 			//FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
 			fragmentManager.popBackStack();
 			fragmentManager.beginTransaction()
-			//.hide(cur);
-			//.replace(R.id.content_frame,fragment)
 			.commit();
 			getActivity().getSupportFragmentManager().executePendingTransactions();
 		}
@@ -202,8 +201,6 @@ public class ScheduleDetailFragment extends Fragment {
 		try {
 			if(CalendarFunction.send(se, "mod"))
 			{
-//				ScheduleManager manager = new ScheduleManager(null);
-//				manager.editSchedule(se);
 			}
 		} catch (Throwable e) {
 			// TODO Auto-generated catch block
@@ -219,8 +216,6 @@ public class ScheduleDetailFragment extends Fragment {
 		try {
 			if(CalendarFunction.send(se, "add"))
 			{
-//				ScheduleManager manager = new ScheduleManager(null);
-//				manager.addSchedule(se);
 			}
 		} catch (Throwable e) {
 			// TODO Auto-generated catch block

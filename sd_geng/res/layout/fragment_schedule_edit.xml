@@ -177,7 +177,7 @@
             android:maxLines="3"
             android:inputType="textMultiLine"
             android:padding="10sp"
-            android:text="yourusername"
+            android:text=""
             android:background="@drawable/back" />
 
     <RelativeLayout

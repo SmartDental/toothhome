@@ -17,6 +17,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import com.edu.thss.smartdental.R;
+import com.edu.thss.smartdental.RoleId;
 import com.edu.thss.smartdental.model.ScheduleElement;
 import com.edu.thss.smartdental.model.general.SDPatient;
 
@@ -109,8 +110,19 @@ public class ScheduleManager {
 			db.close();
 	}
 	
+	public int getCounter()
+	{
+		String tmp = getFromFile2("counter.txt");
+		 tmp = tmp.replaceAll("\n", "");
+		int counter = 0;
+		if (tmp.equals("")) counter = 0;
+		else{
+			counter = Integer.parseInt(tmp);
+		}
+		return counter;
+	}
 	public int addCounter(){
-		String tmp = getFromFile("counter.txt");
+		String tmp = getFromFile2("counter.txt");
 		 tmp = tmp.replaceAll("\n", "");
 		int counter = 0;
 		if (tmp.equals("")) counter = 0;
@@ -118,8 +130,13 @@ public class ScheduleManager {
 			counter = Integer.parseInt(tmp);
 		}
 		counter +=10;
-		writeToFile("counter.txt", String.valueOf(counter));
+		writeToFile2("counter.txt", String.valueOf(counter));
 		return counter;
+	}
+	
+	public void initID(int id)
+	{
+		writeToFile("counter.txt", String.valueOf(id));
 	}
 	
     public String getFromFile(String fileName){
@@ -165,7 +182,34 @@ public class ScheduleManager {
 //        }
 //		return res;  
     }
-    
+
+ @SuppressWarnings("resource")
+public String getFromFile2(String fileName){
+    	
+		try {
+			File file = new File(Environment.getExternalStorageDirectory(),fileName);
+			BufferedReader input = null;
+			try {
+				input = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	        StringBuilder sb = new StringBuilder();
+	        String line;
+	        while ((line = input.readLine()) != null) {
+	        	line = line + "\n";
+	            sb.append(line);
+	            
+	        }
+	        return sb.toString();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "";
+    }
+
 
 
 	public void writeToFile(String fileName, String str){
@@ -182,6 +226,20 @@ public class ScheduleManager {
 
     }
     
+	public void writeToFile2(String fileName, String str){
+    	try{
+    	    	File file2 = new File(Environment.getExternalStorageDirectory(),"counter.txt");
+    			FileOutputStream fos = new FileOutputStream(file2);
+    			fos.write(str.getBytes());
+    			fos.flush();
+    			fos.close();
+    	}
+    	catch(Exception e){
+    		e.printStackTrace();
+    	}
+
+    }
+	
 	public String ScheduleElementToString(ScheduleElement sch){
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String d = df.format(sch.alertTime);
@@ -253,7 +311,10 @@ public class ScheduleManager {
     	
     	Calendar calendar = Calendar.getInstance();
     	Date now = new Date();
-    	if (now.before(newOne.alertTime))
+    	RoleId ri = new RoleId();
+    	ri.readFile("role.txt");
+    	if (now.before(newOne.alertTime) && ( ri.getRole().equals(newOne.toUser)))
+    	//if (now.before(newOne.alertTime))
     	{calendar.setTime(newOne.alertTime);
     	setReminder(calendar.getTimeInMillis(), newOne.name, newOne.description, newOne.id);}
     	return newOne.id;

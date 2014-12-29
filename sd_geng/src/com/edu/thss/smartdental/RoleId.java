@@ -2,6 +2,9 @@ package com.edu.thss.smartdental;
 
 import java.io.*;
 
+import com.edu.thss.smartdental.db.ScheduleManager;
+
+import android.content.Context;
 import android.os.Environment;
 
 public class RoleId {
@@ -13,6 +16,7 @@ public class RoleId {
 		this.id = 0;
 	}
 	
+	@SuppressWarnings("resource")
 	public void readFile(String filename){
 			File file = new File(Environment.getExternalStorageDirectory(),filename);
 			BufferedReader input = null;
@@ -56,6 +60,23 @@ public class RoleId {
 			} 
 	}
 	
+	public void initCounter(int counter)
+	{
+		File file2 = new File(Environment.getExternalStorageDirectory(),"counter.txt");
+		try {
+			@SuppressWarnings("resource")
+			FileOutputStream fos = new FileOutputStream(file2);
+			try {
+				fos.write(String.valueOf(counter).getBytes());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	}
 	public String getRole() {
 		return this.role;
 	}

@@ -55,26 +55,13 @@ public class Schedule extends Fragment {
 	  
 	            @Override  
 	            public void onClick(View v) {  
-//	                getActivity()  
-//	                        .getSupportFragmentManager()  
-//	                        .beginTransaction()  
-//	                        .replace(R.id.content_frame, new CheckInfo(),  
-//	                                "Fragmenttest2")  
-//	                        .commit();  
 	  
 	            }  
 	        });
 		casehistory.setOnClickListener(new OnClickListener() {  
 			  
             @Override  
-            public void onClick(View v) {  
-//                getActivity()  
-//                        .getSupportFragmentManager()  
-//                        .beginTransaction()  
-//                        .replace(R.id.content_frame, new CaseHistory(),  
-//                                "Fragmenttest2")  
-//                        .commit();  
-  
+            public void onClick(View v) {    
             }  
         });
 		return rootView;

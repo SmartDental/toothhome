@@ -7,20 +7,35 @@ import java.util.Date;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.net.ParseException;
+
 import com.edu.thss.smartdental.model.ScheduleElement;
 
 public class SeAndJsonExchanging {
-	public static ScheduleElement JsonToSE(String json) throws JSONException{
+	public static ScheduleElement JsonToSE(String json) throws JSONException, java.text.ParseException{
 		JSONObject object = new JSONObject(json);
-		ScheduleElement se = new ScheduleElement();
-		se.name = object.getString("name");
-		se.alertTime = (Date) object.get("alertTime");
-		se.description = object.getString("description");
-		se.fromUser = object.getString("fromUser");
-		se.toUser = (String) object.getString("toUser");
-		se.id = object.getInt("id");
+		
+		DateFormat   df   =   new   SimpleDateFormat( "yyyy-MM-dd HH:mm:ss");
+		Date time = new Date();
+		try {
+			time = df.parse((String) object.get("alertTime"));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		String oper = (String)object.getString("operation");
+		ScheduleElement se = new ScheduleElement(
+				object.getString("name"),
+				time,
+				object.getString("description"),
+				object.getString("fromUser"),
+				(String) object.getString("toUser")
+				);
+		
 		return se;
 	}
+
 	
 	public static String SEToJson(String operation, ScheduleElement se) throws JSONException {
 		JSONObject object = new JSONObject();

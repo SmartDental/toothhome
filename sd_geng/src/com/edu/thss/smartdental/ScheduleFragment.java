@@ -76,7 +76,9 @@ public class ScheduleFragment extends Fragment implements OnDismissCallback, Del
 		return  cal.getTime();
 	}
 	
+	@SuppressWarnings("rawtypes")
 	void setListView(){
+		@SuppressWarnings("unchecked")
 		ArrayList<ScheduleElement> se = new ArrayList(Arrays.asList(sm.ScheduleList(getDate(), toUser)));
 		mAdapter = new ScheduleListAdapter(this, se, fromUser, toUser);
 		scheduleList = (DynamicListView)rootView.findViewById(R.id.listView);
